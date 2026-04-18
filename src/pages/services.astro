@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const services = [
+  {
+    title: 'Freelance IT Consulting',
+    description:
+      'Infrastructure, tooling, and technical decisions without the enterprise markup. For small businesses that need senior-level thinking without a full-time hire.',
+    icon: 'consulting' as const,
+    bullets: [
+      'Network and systems troubleshooting',
+      'Tool selection and stack reviews',
+      'Backup and disaster recovery planning',
+      'Vendor and SaaS rationalization',
+    ],
+  },
+  {
+    title: 'iOS & App Development',
+    description:
+      'Native SwiftUI apps from concept through App Store submission. Full lifecycle, not just code.',
+    icon: 'ios' as const,
+    bullets: [
+      'SwiftUI app design and development',
+      'App Store submission and review navigation',
+      'StoreKit 2 and in-app purchase integration',
+      'Push notifications, widgets, and system integrations',
+    ],
+  },
+  {
+    title: 'AI & Automation Consulting',
+    description:
+      'Put modern AI to work on real problems — automations, agents, and sensible integrations. Skeptical of hype, focused on what works.',
+    icon: 'ai' as const,
+    bullets: [
+      'LLM integration and prompt engineering',
+      'Workflow automation with Claude, n8n, or custom scripts',
+      'Document processing and RAG pipelines',
+      'AI-driven internal tooling',
+    ],
+  },
+  {
+    title: 'General Tech Advisory',
+    description:
+      'A second pair of eyes on your stack, architecture, or roadmap. Short engagements, direct answers.',
+    icon: 'advisory' as const,
+    bullets: [
+      'Architecture and code reviews',
+      'Technology selection advice',
+      'Technical due diligence',
+      'Roadmap and prioritization sessions',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Services"
+  description="Freelance IT consulting, iOS development, AI automation, and general technology advisory — delivered by Michael Carl at 002 Solutions."
+>
+  <section class="container-site pt-20 sm:pt-28 pb-10">
+    <SectionHeading
+      eyebrow="// SERVICES"
+      title="Four ways I can help."
+      subtitle="Scoped engagements, clear pricing, and senior-level work delivered end-to-end."
+    />
+  </section>
+
+  <section class="container-site pb-20 sm:pb-28">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {services.map((s) => (
+        <ServiceCard
+          title={s.title}
+          description={s.description}
+          icon={s.icon}
+          bullets={s.bullets}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="container-site pb-20 sm:pb-28 border-t hairline pt-20">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="eyebrow mb-4">// NEXT STEP</p>
+      <h2 class="text-3xl sm:text-4xl font-bold">Not sure which one fits?</h2>
+      <p class="mt-4 text-lg text-fog-2 leading-relaxed">
+        Describe your situation in a few sentences. I'll tell you whether I can help, and if not, who might.
+      </p>
+      <div class="mt-8">
+        <a href="/contact" class="btn-primary">
+          Get in touch
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

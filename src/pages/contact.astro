@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Michael Carl at 002 Solutions — describe your project and I'll reply within a couple of business days."
+>
+  <section class="container-site pt-20 sm:pt-28 pb-20">
+    <p class="eyebrow mb-6">// CONTACT</p>
+    <h1 class="text-4xl sm:text-5xl font-bold">Let's talk.</h1>
+    <p class="mt-4 text-lg text-fog-2 max-w-2xl leading-relaxed">
+      Tell me a bit about what you're working on. I'll get back to you within a couple of business days.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+      <div class="lg:col-span-2">
+        <ContactForm />
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="rounded-lg border hairline bg-ink-2/40 p-6">
+          <p class="eyebrow mb-4">// OTHER WAYS TO REACH ME</p>
+          <dl class="space-y-4">
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Email</dt>
+              <dd class="mt-1">
+                <a
+                  href="mailto:michael.carlpb@gmail.com"
+                  class="text-white hover:text-brand-yellow break-all"
+                >
+                  michael.carlpb@gmail.com
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Based in</dt>
+              <dd class="mt-1 text-fog">Tampa, Florida</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Response time</dt>
+              <dd class="mt-1 text-fog">Within a couple of business days</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

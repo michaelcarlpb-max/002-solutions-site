@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const currentlyBuilding = [
+  {
+    name: 'ShutterUp',
+    description: 'a hurricane preparedness iOS app',
+  },
+  {
+    name: 'VaultOS',
+    description: 'an AI-native enterprise backup platform',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="About Michael Carl — independent technologist in Tampa, Florida, and the person behind 002 Solutions."
+>
+  <section class="container-site pt-20 sm:pt-28 pb-16">
+    <p class="eyebrow mb-6">// ABOUT</p>
+    <h1 class="text-4xl sm:text-5xl font-bold max-w-3xl leading-tight">About Michael.</h1>
+
+    <div class="mt-10 max-w-3xl space-y-6 text-lg text-fog leading-relaxed">
+      <p>
+        I'm Michael Carl — an independent technologist based in Tampa, Florida. 002 Solutions is the consulting arm of MC Pickleball Ventures Inc., set up to keep my technology work separate from my other ventures.
+      </p>
+      <p>
+        My background spans software development, sales and marketing, and writing — a mix that turns out to be useful when the job is less "write code" and more "figure out what actually needs building." I ship iOS apps in SwiftUI, design backup and data infrastructure, and build AI-driven tools for problems that used to require large teams or large budgets.
+      </p>
+      <p>
+        I work best with small businesses and founders who want senior-level help without the overhead of a traditional consulting engagement. Projects are scoped, priced clearly, and delivered end-to-end.
+      </p>
+      <p>
+        If that sounds like your situation,
+        <a href="/contact" class="text-brand-yellow hover:underline">get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-site py-16 border-t hairline">
+    <SectionHeading eyebrow="// CURRENTLY BUILDING" title="In-flight projects." />
+    <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl">
+      {currentlyBuilding.map((p) => (
+        <li class="rounded-lg border hairline bg-ink-2/40 p-6">
+          <h3 class="text-xl font-semibold">{p.name}</h3>
+          <p class="mt-2 text-fog-2">{p.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

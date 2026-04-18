@@ -1,0 +1,162 @@
+---
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+---
+
+<form
+  id="contact-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="space-y-5"
+  novalidate
+>
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value="New inquiry from 002solutions.com" />
+  <input type="hidden" name="from_name" value="002 Solutions Website" />
+  <input type="hidden" name="redirect" value="https://002solutions.com/thanks" />
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <div>
+    <label for="name" class="block font-mono text-xs uppercase tracking-widest text-fog-2 mb-2">
+      Name
+    </label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      required
+      minlength="1"
+      maxlength="120"
+      autocomplete="name"
+      class="w-full rounded-md border hairline bg-ink-2/50 px-4 py-3 text-white placeholder-fog-2/60 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent"
+    />
+    <p data-error-for="name" class="hidden mt-1.5 text-sm text-red-400"></p>
+  </div>
+
+  <div>
+    <label for="email" class="block font-mono text-xs uppercase tracking-widest text-fog-2 mb-2">
+      Email
+    </label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      class="w-full rounded-md border hairline bg-ink-2/50 px-4 py-3 text-white placeholder-fog-2/60 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent"
+    />
+    <p data-error-for="email" class="hidden mt-1.5 text-sm text-red-400"></p>
+  </div>
+
+  <div>
+    <label for="message" class="block font-mono text-xs uppercase tracking-widest text-fog-2 mb-2">
+      What are you working on?
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="6"
+      minlength="10"
+      maxlength="2000"
+      class="w-full rounded-md border hairline bg-ink-2/50 px-4 py-3 text-white placeholder-fog-2/60 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent resize-y"
+    ></textarea>
+    <p data-error-for="message" class="hidden mt-1.5 text-sm text-red-400"></p>
+  </div>
+
+  <div class="pt-2">
+    <button
+      type="submit"
+      id="contact-submit"
+      class="btn-primary w-full sm:w-auto justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+    >
+      <span data-label-idle>Send message</span>
+      <span data-label-loading class="hidden">Sending…</span>
+    </button>
+    <p id="form-error" class="hidden mt-4 text-sm text-red-400" role="alert"></p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const submitBtn = form.querySelector('#contact-submit') as HTMLButtonElement;
+    const labelIdle = form.querySelector('[data-label-idle]') as HTMLElement;
+    const labelLoading = form.querySelector('[data-label-loading]') as HTMLElement;
+    const formError = document.getElementById('form-error') as HTMLElement;
+
+    const showError = (field: string, msg: string) => {
+      const el = form.querySelector(`[data-error-for="${field}"]`) as HTMLElement | null;
+      if (el) {
+        el.textContent = msg;
+        el.classList.remove('hidden');
+      }
+    };
+
+    const clearErrors = () => {
+      form.querySelectorAll('[data-error-for]').forEach((el) => {
+        el.textContent = '';
+        el.classList.add('hidden');
+      });
+      formError.textContent = '';
+      formError.classList.add('hidden');
+    };
+
+    const validate = (): boolean => {
+      clearErrors();
+      let ok = true;
+      const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+      const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+      const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+      if (!name) {
+        showError('name', 'Please enter your name.');
+        ok = false;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('email', 'Please enter a valid email address.');
+        ok = false;
+      }
+      if (message.length < 10) {
+        showError('message', 'Please add at least 10 characters.');
+        ok = false;
+      } else if (message.length > 2000) {
+        showError('message', 'Message is too long (2000 character max).');
+        ok = false;
+      }
+      return ok;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      submitBtn.disabled = true;
+      labelIdle.classList.add('hidden');
+      labelLoading.classList.remove('hidden');
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.success) {
+          window.location.href = '/thanks';
+          return;
+        }
+        throw new Error(json.message || 'Submission failed.');
+      } catch (err) {
+        formError.textContent =
+          err instanceof Error
+            ? `Something went wrong: ${err.message} You can also email michael.carlpb@gmail.com directly.`
+            : 'Something went wrong. You can also email michael.carlpb@gmail.com directly.';
+        formError.classList.remove('hidden');
+        submitBtn.disabled = false;
+        labelIdle.classList.remove('hidden');
+        labelLoading.classList.add('hidden');
+      }
+    });
+  }
+</script>

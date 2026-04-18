@@ -1,0 +1,65 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(href));
+
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="sticky top-0 z-40 backdrop-blur bg-ink/80 border-b hairline">
+  <nav class="container-site flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-3" aria-label="002 Solutions home">
+      <img src="/logo.png" alt="002 Solutions" class="h-10 w-auto" width="120" height="40" />
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" aria-label="Toggle navigation" />
+
+    <label
+      for="nav-toggle"
+      class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded border hairline cursor-pointer text-fog hover:text-white hover:border-white/30"
+      aria-label="Open menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </label>
+
+    <ul class="hidden md:flex items-center gap-8">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class:list={[
+              'font-mono text-sm transition',
+              isActive(l.href) ? 'text-brand-yellow' : 'text-fog hover:text-white',
+            ]}
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="/contact" class="btn-primary text-sm py-2 px-4">Contact</a>
+      </li>
+    </ul>
+
+    <div class="md:hidden absolute left-0 right-0 top-16 origin-top scale-y-0 peer-checked:scale-y-100 transition-transform duration-200 bg-ink border-b hairline">
+      <ul class="container-site py-6 flex flex-col gap-4">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="block font-mono text-base text-fog hover:text-white py-2">
+              {l.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/contact" class="btn-primary w-full justify-center">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

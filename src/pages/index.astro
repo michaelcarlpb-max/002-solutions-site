@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const services = [
+  {
+    title: 'Freelance IT Consulting',
+    description: 'Infrastructure, tooling, and technical decisions without the enterprise markup.',
+    icon: 'consulting' as const,
+  },
+  {
+    title: 'iOS & App Development',
+    description: 'Native SwiftUI apps from concept through App Store submission.',
+    icon: 'ios' as const,
+  },
+  {
+    title: 'AI & Automation Consulting',
+    description: 'Put modern AI to work on real problems — automations, agents, and sensible integrations.',
+    icon: 'ai' as const,
+  },
+  {
+    title: 'General Tech Advisory',
+    description: 'A second pair of eyes on your stack, architecture, or roadmap.',
+    icon: 'advisory' as const,
+  },
+];
+---
+
+<BaseLayout title="002 Solutions">
+  <Hero />
+
+  <section class="container-site py-20 sm:py-28">
+    <SectionHeading
+      eyebrow="// 01 — SERVICES"
+      title="What I help with."
+      subtitle="Senior-level technology help, sized to fit small businesses and founders."
+    />
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+      {services.map((s) => (
+        <ServiceCard title={s.title} description={s.description} icon={s.icon} href="/services" />
+      ))}
+    </div>
+  </section>
+
+  <section class="container-site py-20 sm:py-28 border-t hairline">
+    <SectionHeading eyebrow="// 02 — ABOUT" title="Who you'd be working with." />
+    <div class="mt-8 max-w-3xl text-lg text-fog-2 leading-relaxed space-y-4">
+      <p>
+        I'm Michael Carl — an independent technologist in Tampa, Florida, shipping iOS apps, AI tools, and backup infrastructure for small businesses and founders.
+      </p>
+      <p>
+        <a href="/about" class="text-brand-yellow hover:underline">Read more about how I work →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="container-site py-20 sm:py-28 border-t hairline">
+    <div class="relative overflow-hidden rounded-xl border hairline bg-ink-2/40 p-10 sm:p-14">
+      <div class="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full blur-3xl opacity-20 bg-brand-gradient pointer-events-none" aria-hidden="true"></div>
+      <p class="eyebrow mb-4">// GET IN TOUCH</p>
+      <h2 class="text-3xl sm:text-4xl font-bold max-w-2xl">
+        Have something in mind? Let's talk.
+      </h2>
+      <div class="mt-8">
+        <a href="/contact" class="btn-primary">
+          Start a conversation
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

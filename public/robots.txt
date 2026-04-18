@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://002solutions.com/sitemap-index.xml
