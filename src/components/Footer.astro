@@ -3,16 +3,32 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t hairline mt-24">
-  <div class="container-site py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-    <p class="text-sm text-fog-2">
-      &copy; {year} MC Pickleball Ventures Inc. / 002 Solutions
-    </p>
-    <ul class="flex flex-wrap items-center gap-6 font-mono text-xs uppercase tracking-widest">
-      <li><a href="/services" class="text-fog-2 hover:text-white">Services</a></li>
-      <li><a href="/about" class="text-fog-2 hover:text-white">About</a></li>
-      <li><a href="/contact" class="text-fog-2 hover:text-white">Contact</a></li>
+  <div class="container-site py-12 flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+    <div class="flex items-start gap-4">
+      <img
+        src="/logo.png"
+        alt=""
+        class="h-12 w-12 object-contain opacity-90"
+        width="48"
+        height="48"
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <p class="font-display text-lg font-semibold text-white">002 Solutions</p>
+        <p class="mt-1 text-sm text-fog-2">
+          &copy; {year} MC Pickleball Ventures Inc.
+        </p>
+        <p class="mt-1 text-sm text-fog-2">Tampa, Florida</p>
+      </div>
+    </div>
+
+    <ul class="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs uppercase tracking-widest">
+      <li><a href="/services" class="text-fog-2 hover:text-white transition">Services</a></li>
+      <li><a href="/about" class="text-fog-2 hover:text-white transition">About</a></li>
+      <li><a href="/contact" class="text-fog-2 hover:text-white transition">Contact</a></li>
       <li>
-        <a href="mailto:michael.carlpb@gmail.com" class="text-fog-2 hover:text-white">
+        <a href="mailto:michael.carlpb@gmail.com" class="text-fog-2 hover:text-white transition normal-case tracking-normal">
           michael.carlpb@gmail.com
         </a>
       </li>

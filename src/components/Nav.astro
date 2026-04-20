@@ -9,9 +9,17 @@ const links = [
 ---
 
 <header class="sticky top-0 z-40 backdrop-blur bg-ink/80 border-b hairline">
-  <nav class="container-site flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-3" aria-label="002 Solutions home">
-      <img src="/logo.png" alt="002 Solutions" class="h-10 w-auto" width="120" height="40" />
+  <nav class="container-site flex items-center justify-between h-20">
+    <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-80" aria-label="002 Solutions home">
+      <img
+        src="/logo.png"
+        alt="002 Solutions"
+        class="h-14 w-14 object-contain"
+        width="56"
+        height="56"
+        loading="eager"
+        decoding="async"
+      />
     </a>
 
     <input type="checkbox" id="nav-toggle" class="peer sr-only" aria-label="Toggle navigation" />
@@ -47,7 +55,7 @@ const links = [
       </li>
     </ul>
 
-    <div class="md:hidden absolute left-0 right-0 top-16 origin-top scale-y-0 peer-checked:scale-y-100 transition-transform duration-200 bg-ink border-b hairline">
+    <div class="md:hidden absolute left-0 right-0 top-20 origin-top scale-y-0 peer-checked:scale-y-100 transition-transform duration-200 bg-ink border-b hairline">
       <ul class="container-site py-6 flex flex-col gap-4">
         {links.map((l) => (
           <li>
