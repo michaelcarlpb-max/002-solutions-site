@@ -1,0 +1,70 @@
+---
+const stats = [
+  {
+    figure: 'Solo',
+    label: 'practice',
+    sub: 'No agencies, no middlemen',
+  },
+  {
+    figure: '4',
+    label: 'service areas',
+    sub: 'iOS · AI · Backup · Advisory',
+  },
+  {
+    figure: 'Tampa',
+    label: 'Florida',
+    sub: 'Remote-friendly worldwide',
+  },
+  {
+    figure: 'Fixed',
+    label: 'scope',
+    sub: 'Clear pricing, end-to-end',
+  },
+];
+
+const tools = [
+  { name: 'Swift',      src: '/icons/swift.svg' },
+  { name: 'Apple',      src: '/icons/apple.svg' },
+  { name: 'Anthropic',  src: '/icons/anthropic.svg' },
+  { name: 'Cloudflare', src: '/icons/cloudflare.svg' },
+  { name: 'TypeScript', src: '/icons/typescript.svg' },
+  { name: 'Astro',      src: '/icons/astro.svg' },
+];
+---
+
+<section class="border-b hairline bg-ink-2/30">
+  <div class="container-site py-14 sm:py-16">
+    <dl class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
+      {stats.map((s) => (
+        <div class="flex flex-col">
+          <dt class="sr-only">{s.label}</dt>
+          <dd class="font-display text-2xl sm:text-3xl font-bold">
+            <span class="bg-brand-gradient bg-clip-text text-transparent">{s.figure}</span>
+            <span class="text-white ml-1">{s.label}</span>
+          </dd>
+          <p class="mt-2 text-sm text-fog-2 leading-snug">{s.sub}</p>
+        </div>
+      ))}
+    </dl>
+
+    <div class="mt-14 pt-10 border-t hairline">
+      <p class="eyebrow mb-6 text-center md:text-left">// TOOLS OF THE TRADE</p>
+      <ul class="flex flex-wrap items-center justify-center md:justify-start gap-x-10 gap-y-6">
+        {tools.map((t) => (
+          <li class="flex items-center gap-2.5 opacity-70 hover:opacity-100 transition">
+            <img
+              src={t.src}
+              alt=""
+              class="h-6 w-6 object-contain"
+              width="24"
+              height="24"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="font-mono text-xs uppercase tracking-widest text-fog">{t.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
