@@ -44,4 +44,28 @@
       animation: grid-drift 20s linear infinite;
     }
   }
+
+  /* Scroll-reveal — pure CSS via scroll-driven animations (Chrome 115+, Edge 115+, Safari 26+)
+     Gracefully does nothing in browsers that don't support animation-timeline,
+     and is disabled entirely under prefers-reduced-motion. */
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+      }
+    }
+  }
 }
