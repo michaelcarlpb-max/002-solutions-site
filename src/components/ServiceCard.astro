@@ -14,12 +14,25 @@ const Tag = href ? 'a' : 'div';
 <Tag
   href={href}
   class:list={[
-    'group relative block rounded-lg border hairline bg-ink-2/40 p-6 sm:p-8 transition',
-    href && 'hover:border-white/30 hover:bg-ink-2/70',
+    'group relative block overflow-hidden rounded-lg border hairline bg-ink-2/40 p-6 sm:p-8 transition-all duration-300',
+    href && 'hover:-translate-y-1 hover:border-white/25 hover:bg-ink-2/70 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.6)]',
   ]}
 >
+  {href && (
+    <span
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-yellow to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      aria-hidden="true"
+    ></span>
+  )}
+  {href && (
+    <span
+      class="pointer-events-none absolute -top-24 -right-16 w-64 h-64 rounded-full bg-brand-gradient opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500"
+      aria-hidden="true"
+    ></span>
+  )}
+  <div class="relative z-[1]">
   {icon && (
-    <div class="mb-5 inline-flex items-center justify-center w-11 h-11 rounded-md border hairline bg-ink text-brand-yellow">
+    <div class="mb-5 inline-flex items-center justify-center w-11 h-11 rounded-md border hairline bg-ink text-brand-yellow transition-colors duration-300 group-hover:border-brand-yellow/40">
       {icon === 'consulting' && (
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="4" width="18" height="14" rx="2" />
@@ -71,4 +84,5 @@ const Tag = href ? 'a' : 'div';
       Learn more <span aria-hidden="true">→</span>
     </span>
   )}
+  </div>
 </Tag>
