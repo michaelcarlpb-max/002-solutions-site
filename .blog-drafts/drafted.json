@@ -1,4 +1,12 @@
 {
   "_comment": "State log for the weekly blog draft job. The generator appends an entry each time it drafts a post, so topics don't repeat. Edit this file if you want to force a topic to be re-drafted or remove it from the 'done' list.",
-  "drafted": []
+  "drafted": [
+    {
+      "slug": "how-to-tell-if-your-ai-project-will-actually-ship",
+      "title": "The three questions that predict whether your AI project will ship",
+      "topicTitle": "How to tell if your AI project will actually ship",
+      "category": "ai",
+      "draftedAt": "2026-04-21T17:55:14.023Z"
+    }
+  ]
 }
