@@ -1,11 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { SITE_URL, ORG_ID, breadcrumb } from '../lib/schema';
+
+const pageSchema = [
+  {
+    '@type': 'ContactPage',
+    url: `${SITE_URL}/contact`,
+    name: 'Contact — 002 Solutions',
+    description:
+      'Get in touch with Michael Carl at 002 Solutions. Describe your project and expect a reply within a couple of business days.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    mainEntity: { '@id': ORG_ID },
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'Contact', url: `${SITE_URL}/contact` },
+  ]),
+];
 ---
 
 <BaseLayout
   title="Contact"
   description="Get in touch with Michael Carl at 002 Solutions — describe your project and I'll reply within a couple of business days."
+  schema={pageSchema}
 >
   <section class="container-site pt-20 sm:pt-28 pb-20">
     <p class="eyebrow mb-6">// CONTACT</p>

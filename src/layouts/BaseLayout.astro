@@ -7,18 +7,25 @@ import '@fontsource/jetbrains-mono/500.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { renderJsonLd } from '../lib/schema';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** Additional schema.org entities to merge into the page's @graph. Single object or array. */
+  schema?: unknown | unknown[];
 }
 
 const {
   title,
   description = 'Freelance IT consulting, iOS development, and AI automation — based in Tampa, Florida. Remote-friendly.',
   ogImage = '/og.png',
+  schema,
 } = Astro.props;
+
+const pageSchemas = schema === undefined ? [] : Array.isArray(schema) ? schema : [schema];
+const jsonLd = renderJsonLd(pageSchemas);
 
 const siteName = '002 Solutions';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://002solutions.com').toString();
@@ -57,6 +64,8 @@ const fullTitle = title === siteName ? `${siteName} — Practical technology con
     <meta name="twitter:image:alt" content="002 Solutions — Practical technology, built by someone who actually ships." />
 
     <meta name="theme-color" content="#0A0E1A" />
+
+    <script type="application/ld+json" set:html={jsonLd} is:inline />
   </head>
   <body class="min-h-screen flex flex-col">
     <Nav />

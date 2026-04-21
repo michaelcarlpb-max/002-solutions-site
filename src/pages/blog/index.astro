@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { SITE_URL, ORG_ID, PERSON_ID, breadcrumb } from '../../lib/schema';
 
 const isProd = import.meta.env.PROD;
 const allPosts = await getCollection('blog', ({ data }) => !isProd || !data.draft);
@@ -13,11 +14,37 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
   month: 'long',
   day: 'numeric',
 });
+
+const pageSchema = [
+  {
+    '@type': 'Blog',
+    '@id': `${SITE_URL}/blog#blog`,
+    url: `${SITE_URL}/blog`,
+    name: '002 Solutions — Writing',
+    description:
+      'Notes on practical technology consulting — iOS, AI, infrastructure, and the decisions behind them.',
+    inLanguage: 'en-US',
+    publisher: { '@id': ORG_ID },
+    author: { '@id': PERSON_ID },
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: post.data.pubDate.toISOString(),
+      author: { '@id': PERSON_ID },
+    })),
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'Writing', url: `${SITE_URL}/blog` },
+  ]),
+];
 ---
 
 <BaseLayout
   title="Writing"
   description="Notes on practical technology consulting — iOS, AI, infrastructure, and the decisions behind them."
+  schema={pageSchema}
 >
   <section class="container-site pt-20 sm:pt-28 pb-10">
     <p class="eyebrow mb-6">// WRITING</p>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { SITE_URL, PERSON_ID, breadcrumb } from '../lib/schema';
 
 const currentlyBuilding = [
   {
@@ -12,11 +13,28 @@ const currentlyBuilding = [
     description: 'an AI-native enterprise backup platform',
   },
 ];
+
+const pageSchema = [
+  {
+    '@type': 'AboutPage',
+    url: `${SITE_URL}/about`,
+    name: 'About Michael Carl — 002 Solutions',
+    description:
+      'About Michael Carl, the independent technologist behind 002 Solutions, based in Tampa, Florida.',
+    inLanguage: 'en-US',
+    mainEntity: { '@id': PERSON_ID },
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'About', url: `${SITE_URL}/about` },
+  ]),
+];
 ---
 
 <BaseLayout
   title="About"
   description="About Michael Carl — independent technologist in Tampa, Florida, and the person behind 002 Solutions."
+  schema={pageSchema}
 >
   <section class="container-site pt-20 sm:pt-28 pb-16">
     <p class="eyebrow mb-6">// ABOUT</p>

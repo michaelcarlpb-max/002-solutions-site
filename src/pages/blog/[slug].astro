@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { SITE_URL, ORG_ID, PERSON_ID, breadcrumb } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const isProd = import.meta.env.PROD;
@@ -37,9 +38,39 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
 // Rough reading time: 220 wpm on prose.
 const wordCount = post.body.trim().split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 220));
+
+const postUrl = `${SITE_URL}/blog/${post.slug}`;
+
+const pageSchema = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${postUrl}#article`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postUrl,
+    },
+    headline: post.data.title,
+    description: post.data.description,
+    url: postUrl,
+    datePublished: post.data.pubDate.toISOString(),
+    ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': ORG_ID },
+    image: `${SITE_URL}/og.png`,
+    inLanguage: 'en-US',
+    wordCount,
+    ...(post.data.tags && post.data.tags.length > 0 && { keywords: post.data.tags.join(', ') }),
+    isPartOf: { '@id': `${SITE_URL}/blog#blog` },
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'Writing', url: `${SITE_URL}/blog` },
+    { name: post.data.title, url: postUrl },
+  ]),
+];
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} schema={pageSchema}>
   <article class="container-site pt-20 sm:pt-28 pb-16">
     <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
       <a href="/blog" class="hover:text-brand-yellow transition">Writing</a>

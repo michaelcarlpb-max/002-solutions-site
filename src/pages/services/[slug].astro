@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { services, type Service } from '../../data/services';
+import { SITE_URL, ORG_ID, breadcrumb } from '../../lib/schema';
 
 export async function getStaticPaths() {
   return services.map((service) => ({
@@ -22,9 +23,45 @@ const next = currentIndex < services.length - 1 ? services[currentIndex + 1] : s
 
 // Sibling services for "other services" strip
 const otherServices = services.filter((s) => s.slug !== service.slug);
+
+const serviceUrl = `${SITE_URL}/services/${service.slug}`;
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    '@id': `${serviceUrl}#service`,
+    name: service.title,
+    description: service.metaDescription,
+    url: serviceUrl,
+    serviceType: service.shortTitle,
+    provider: { '@id': ORG_ID },
+    areaServed: [
+      { '@type': 'City', name: 'Tampa' },
+      { '@type': 'State', name: 'Florida' },
+      { '@type': 'Country', name: 'United States' },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.title} — Deliverables`,
+      itemListElement: service.deliverables.map((d, i) => ({
+        '@type': 'Offer',
+        position: i + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: d,
+        },
+      })),
+    },
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'Services', url: `${SITE_URL}/services` },
+    { name: service.shortTitle, url: serviceUrl },
+  ]),
+];
 ---
 
-<BaseLayout title={service.title} description={service.metaDescription}>
+<BaseLayout title={service.title} description={service.metaDescription} schema={pageSchema}>
   <section class="container-site pt-20 sm:pt-28 pb-10">
     <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
       <a href="/services" class="hover:text-brand-yellow transition">Services</a>

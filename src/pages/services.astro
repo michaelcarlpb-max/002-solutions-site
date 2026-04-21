@@ -3,11 +3,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { services } from '../data/services';
+import { SITE_URL, ORG_ID, breadcrumb } from '../lib/schema';
+
+const pageSchema = [
+  {
+    '@type': 'CollectionPage',
+    url: `${SITE_URL}/services`,
+    name: 'Services — 002 Solutions',
+    description:
+      'Freelance IT consulting, iOS development, AI automation, and general technology advisory.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: services.map((s, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/services/${s.slug}`,
+        name: s.title,
+      })),
+    },
+  },
+  breadcrumb([
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'Services', url: `${SITE_URL}/services` },
+  ]),
+];
 ---
 
 <BaseLayout
   title="Services"
   description="Freelance IT consulting, iOS development, AI automation, and general technology advisory — delivered by Michael Carl at 002 Solutions."
+  schema={pageSchema}
 >
   <section class="container-site pt-20 sm:pt-28 pb-10">
     <SectionHeading
