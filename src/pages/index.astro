@@ -5,29 +5,14 @@ import CredibilityStrip from '../components/CredibilityStrip.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProcessSection from '../components/ProcessSection.astro';
+import { services } from '../data/services';
 
-const services = [
-  {
-    title: 'Freelance IT Consulting',
-    description: 'Infrastructure, tooling, and technical decisions without the enterprise markup.',
-    icon: 'consulting' as const,
-  },
-  {
-    title: 'iOS & App Development',
-    description: 'Native SwiftUI apps from concept through App Store submission.',
-    icon: 'ios' as const,
-  },
-  {
-    title: 'AI & Automation Consulting',
-    description: 'Put modern AI to work on real problems — automations, agents, and sensible integrations.',
-    icon: 'ai' as const,
-  },
-  {
-    title: 'General Tech Advisory',
-    description: 'A second pair of eyes on your stack, architecture, or roadmap.',
-    icon: 'advisory' as const,
-  },
-];
+const homeServices = services.map((s) => ({
+  title: s.title,
+  description: s.summary.split('.')[0] + '.',
+  icon: s.icon,
+  href: `/services/${s.slug}`,
+}));
 ---
 
 <BaseLayout title="002 Solutions">
@@ -41,8 +26,8 @@ const services = [
       subtitle="Senior-level technology help, sized to fit small businesses and founders."
     />
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
-      {services.map((s) => (
-        <ServiceCard title={s.title} description={s.description} icon={s.icon} href="/services" />
+      {homeServices.map((s) => (
+        <ServiceCard title={s.title} description={s.description} icon={s.icon} href={s.href} />
       ))}
     </div>
   </section>

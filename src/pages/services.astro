@@ -2,57 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-
-const services = [
-  {
-    title: 'Freelance IT Consulting',
-    description:
-      'Infrastructure, tooling, and technical decisions without the enterprise markup. For small businesses that need senior-level thinking without a full-time hire.',
-    icon: 'consulting' as const,
-    bullets: [
-      'Network and systems troubleshooting',
-      'Tool selection and stack reviews',
-      'Backup and disaster recovery planning',
-      'Vendor and SaaS rationalization',
-    ],
-  },
-  {
-    title: 'iOS & App Development',
-    description:
-      'Native SwiftUI apps from concept through App Store submission. Full lifecycle, not just code.',
-    icon: 'ios' as const,
-    bullets: [
-      'SwiftUI app design and development',
-      'App Store submission and review navigation',
-      'StoreKit 2 and in-app purchase integration',
-      'Push notifications, widgets, and system integrations',
-    ],
-  },
-  {
-    title: 'AI & Automation Consulting',
-    description:
-      'Put modern AI to work on real problems — automations, agents, and sensible integrations. Skeptical of hype, focused on what works.',
-    icon: 'ai' as const,
-    bullets: [
-      'LLM integration and prompt engineering',
-      'Workflow automation with Claude, n8n, or custom scripts',
-      'Document processing and RAG pipelines',
-      'AI-driven internal tooling',
-    ],
-  },
-  {
-    title: 'General Tech Advisory',
-    description:
-      'A second pair of eyes on your stack, architecture, or roadmap. Short engagements, direct answers.',
-    icon: 'advisory' as const,
-    bullets: [
-      'Architecture and code reviews',
-      'Technology selection advice',
-      'Technical due diligence',
-      'Roadmap and prioritization sessions',
-    ],
-  },
-];
+import { services } from '../data/services';
 ---
 
 <BaseLayout
@@ -72,9 +22,10 @@ const services = [
       {services.map((s) => (
         <ServiceCard
           title={s.title}
-          description={s.description}
+          description={s.summary}
           icon={s.icon}
-          bullets={s.bullets}
+          bullets={s.deliverables.slice(0, 4)}
+          href={`/services/${s.slug}`}
         />
       ))}
     </div>

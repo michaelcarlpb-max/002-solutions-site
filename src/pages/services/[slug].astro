@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services, type Service } from '../../data/services';
+
+export async function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+// For prev/next navigation at the bottom
+const currentIndex = services.findIndex((s) => s.slug === service.slug);
+const prev = currentIndex > 0 ? services[currentIndex - 1] : services[services.length - 1];
+const next = currentIndex < services.length - 1 ? services[currentIndex + 1] : services[0];
+
+// Sibling services for "other services" strip
+const otherServices = services.filter((s) => s.slug !== service.slug);
+---
+
+<BaseLayout title={service.title} description={service.metaDescription}>
+  <section class="container-site pt-20 sm:pt-28 pb-10">
+    <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
+      <a href="/services" class="hover:text-brand-yellow transition">Services</a>
+      <span class="mx-2" aria-hidden="true">/</span>
+      <span class="text-fog">{service.shortTitle}</span>
+    </nav>
+
+    <div class="flex items-start gap-5 max-w-3xl">
+      <div class="mt-1 inline-flex items-center justify-center w-12 h-12 rounded-md border hairline bg-ink-2 text-brand-yellow flex-shrink-0">
+        {service.icon === 'consulting' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="14" rx="2" />
+            <path d="M8 20h8" />
+            <path d="M12 18v2" />
+            <path d="M7 10h4" />
+            <path d="M7 14h7" />
+          </svg>
+        )}
+        {service.icon === 'ios' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="2.5" />
+            <path d="M11 18h2" />
+          </svg>
+        )}
+        {service.icon === 'ai' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v3" />
+            <path d="M12 19v3" />
+            <path d="M4.22 4.22l2.12 2.12" />
+            <path d="M17.66 17.66l2.12 2.12" />
+            <path d="M2 12h3" />
+            <path d="M19 12h3" />
+            <circle cx="12" cy="12" r="5" />
+          </svg>
+        )}
+        {service.icon === 'advisory' && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        )}
+      </div>
+      <div>
+        <p class="eyebrow mb-3">// SERVICE</p>
+        <h1 class="text-4xl sm:text-5xl font-bold leading-tight">{service.title}</h1>
+      </div>
+    </div>
+
+    <p class="mt-8 max-w-3xl text-lg text-fog leading-relaxed">
+      {service.intro}
+    </p>
+  </section>
+
+  <section class="reveal container-site py-14 border-t hairline">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+      <div class="lg:col-span-2">
+        <p class="eyebrow mb-5">// WHAT YOU GET</p>
+        <h2 class="text-2xl sm:text-3xl font-bold">Concrete deliverables.</h2>
+        <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+          {service.deliverables.map((d) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true"></span>
+              <span class="text-fog leading-relaxed">{d}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="rounded-lg border hairline bg-ink-2/40 p-6">
+          <p class="eyebrow mb-5">// ENGAGEMENT</p>
+          <dl class="space-y-5">
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Typical length</dt>
+              <dd class="mt-1.5 text-fog leading-relaxed">{service.engagement.typicalLength}</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Pricing</dt>
+              <dd class="mt-1.5 text-fog leading-relaxed">{service.engagement.pricing}</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-xs uppercase tracking-widest text-fog-2">Process</dt>
+              <dd class="mt-1.5 text-fog leading-relaxed">{service.engagement.process}</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="reveal container-site py-14 border-t hairline">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="rounded-lg border hairline bg-ink-2/40 p-7">
+        <p class="eyebrow mb-5">// GREAT FIT FOR</p>
+        <ul class="space-y-3">
+          {service.goodFit.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true"></span>
+              <span class="text-fog leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="rounded-lg border hairline bg-ink-2/40 p-7">
+        <p class="eyebrow mb-5">// PROBABLY NOT A FIT</p>
+        <ul class="space-y-3">
+          {service.notAFit.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-fog-2/40 flex-shrink-0" aria-hidden="true"></span>
+              <span class="text-fog-2 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal container-site py-16 border-t hairline">
+    <div class="relative overflow-hidden rounded-xl border hairline bg-ink-2/40 p-10 sm:p-14">
+      <div class="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full blur-3xl opacity-20 bg-brand-gradient pointer-events-none" aria-hidden="true"></div>
+      <p class="eyebrow mb-4">// NEXT STEP</p>
+      <h2 class="text-3xl sm:text-4xl font-bold max-w-2xl">
+        Sound like what you need? Let's talk.
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg text-fog-2 leading-relaxed">
+        Describe your situation in a few sentences. I'll tell you whether I can help, and how I'd scope the work.
+      </p>
+      <div class="mt-8">
+        <a href="/contact" class="btn-primary">
+          Start a conversation
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal container-site py-16 border-t hairline">
+    <div class="flex items-baseline justify-between mb-8">
+      <p class="eyebrow">// OTHER SERVICES</p>
+      <a href="/services" class="font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline">
+        View all →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {otherServices.map((s) => (
+        <a
+          href={`/services/${s.slug}`}
+          class="group relative block rounded-lg border hairline bg-ink-2/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-ink-2/70"
+        >
+          <h3 class="text-lg font-semibold">{s.shortTitle}</h3>
+          <p class="mt-2 text-sm text-fog-2 leading-relaxed line-clamp-2">{s.summary}</p>
+          <span class="mt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-brand-yellow group-hover:gap-2 transition-all">
+            Learn more <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
