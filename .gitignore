@@ -29,3 +29,9 @@ pnpm-debug.log*
 # Original source assets (kept locally, not tracked)
 002_Solutions_Logo_Transparent.png
 002_Solutions__feature.png
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
