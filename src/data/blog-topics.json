@@ -1,0 +1,33 @@
+{
+  "_comment": "Topic queue for the weekly blog draft job. Add new topics anywhere in the list — the generator picks the first one that hasn't been drafted yet (see .blog-drafts/drafted.json).",
+  "topics": [
+    { "category": "ai", "title": "How to tell if your AI project will actually ship" },
+    { "category": "backup", "title": "A practical 3-2-1 backup strategy for small businesses" },
+    { "category": "ios", "title": "SwiftUI vs UIKit in 2026: when to pick each" },
+    { "category": "advisory", "title": "When to build, when to buy, when to wait" },
+    { "category": "ai", "title": "RAG vs fine-tuning: which do you actually need?" },
+    { "category": "it", "title": "The SaaS stack audit every small business should run annually" },
+    { "category": "ios", "title": "The unglamorous work of App Store submission" },
+    { "category": "backup", "title": "Ransomware readiness for teams under 50 people" },
+    { "category": "ai", "title": "The hidden costs of 'just use an LLM for this'" },
+    { "category": "advisory", "title": "Signs you're over-engineering" },
+    { "category": "ios", "title": "StoreKit 2 for subscription apps: gotchas I've hit" },
+    { "category": "it", "title": "Password managers vs SSO vs neither: what small teams actually need" },
+    { "category": "ai", "title": "Why most AI automations fail at the last mile" },
+    { "category": "backup", "title": "Disaster recovery planning without an enterprise budget" },
+    { "category": "advisory", "title": "Technical due diligence: what I actually look at" },
+    { "category": "ios", "title": "Why your 'simple' iOS app probably needs a backend" },
+    { "category": "ai", "title": "A simple framework for evaluating AI tools for your business" },
+    { "category": "it", "title": "Email infrastructure: why SPF, DKIM, and DMARC still matter" },
+    { "category": "advisory", "title": "How to read a proposal from a bigger consultancy" },
+    { "category": "ios", "title": "App Store rejection patterns and how to avoid them" },
+    { "category": "backup", "title": "Data retention for small businesses: keep, delete, or archive" },
+    { "category": "ai", "title": "Document processing with Claude: what works, what doesn't" },
+    { "category": "it", "title": "Cloudflare for small businesses: more than just DNS" },
+    { "category": "advisory", "title": "Choosing a stack for a greenfield project in 2026" },
+    { "category": "ios", "title": "Shipping an iOS app as a solo founder" },
+    { "category": "ai", "title": "When a workflow deserves automation, and when it doesn't" },
+    { "category": "backup", "title": "Testing your backups: the one thing almost nobody does" },
+    { "category": "advisory", "title": "What a good architecture review actually looks like" }
+  ]
+}

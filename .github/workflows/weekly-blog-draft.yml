@@ -1,0 +1,73 @@
+name: Weekly blog draft
+
+on:
+  # Monday 13:00 UTC = 9am EDT / 8am EST (Tampa time, Monday morning)
+  schedule:
+    - cron: '0 13 * * 1'
+  # Allow manual runs from the GitHub Actions tab for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate blog draft
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-blog-draft.mjs
+
+      - name: Stop if no topics left
+        if: steps.generate.outputs.skipped == 'true'
+        run: |
+          echo "No undrafted topics remain. Add more to src/data/blog-topics.json."
+          exit 0
+
+      - name: Open pull request
+        if: steps.generate.outputs.skipped != 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Weekly draft: ${{ steps.generate.outputs.title }}"
+          branch: blog-draft/${{ steps.generate.outputs.slug }}
+          delete-branch: true
+          title: "Weekly draft: ${{ steps.generate.outputs.title }}"
+          labels: blog-draft
+          body: |
+            Auto-generated weekly blog draft.
+
+            - **Topic**: ${{ steps.generate.outputs.topic }}
+            - **Category**: ${{ steps.generate.outputs.category }}
+            - **File**: `${{ steps.generate.outputs.file }}`
+            - **Status**: `draft: true` (won't appear on the live site until you flip it)
+
+            ### To publish
+
+            1. Pull the branch locally or edit in the GitHub web UI.
+            2. Edit the post to sound like you. The model gets the structure and the research, but your voice and specific examples are what readers will care about.
+            3. When you're happy, change `draft: true` to `draft: false` in the frontmatter.
+            4. Merge this PR. Cloudflare will build and publish automatically.
+
+            ### To skip this one
+
+            Close the PR without merging. The topic will stay marked as "drafted" in `.blog-drafts/drafted.json`, so it won't be picked again. If you want the topic recycled back into the queue, remove its entry from that file in a separate commit before closing.
