@@ -1,6 +1,6 @@
 # 002 Solutions — Marketing Site
 
-Brochure / lead-gen site for **002 Solutions** (a DBA of MC Pickleball Ventures Inc.), built with Astro, Tailwind CSS, and TypeScript. Deployed as a static site to Cloudflare Pages.
+Brochure / lead-gen site for **002 Solutions**, the technology consulting practice of Michael Carl. Built with Astro, Tailwind CSS, and TypeScript. Deployed as a static site to Cloudflare Pages.
 
 Production URL: <https://002solutions.com>
 
@@ -81,4 +81,4 @@ tailwind.config.mjs
 
 ## License
 
-Proprietary — © MC Pickleball Ventures Inc.
+Proprietary — © Michael Carl / 002 Solutions
