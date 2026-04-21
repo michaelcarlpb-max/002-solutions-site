@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const isProd = import.meta.env.PROD;
+const allPosts = await getCollection('blog', ({ data }) => !isProd || !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title="Writing"
+  description="Notes on practical technology consulting — iOS, AI, infrastructure, and the decisions behind them."
+>
+  <section class="container-site pt-20 sm:pt-28 pb-10">
+    <p class="eyebrow mb-6">// WRITING</p>
+    <h1 class="text-4xl sm:text-5xl font-bold leading-tight">Notes from the work.</h1>
+    <p class="mt-5 max-w-2xl text-lg text-fog-2 leading-relaxed">
+      Short, practical posts on technology choices, iOS development, AI tooling, and the occasional opinion about how work gets done.
+    </p>
+    <div class="mt-6">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1" />
+        </svg>
+        RSS feed
+      </a>
+    </div>
+  </section>
+
+  <section class="container-site pb-20 sm:pb-28">
+    {posts.length === 0 ? (
+      <div class="rounded-lg border hairline bg-ink-2/40 p-10 text-center">
+        <p class="text-fog-2">No posts yet — check back soon.</p>
+      </div>
+    ) : (
+      <ul class="divide-y hairline border-t border-b hairline">
+        {posts.map((post) => (
+          <li>
+            <a
+              href={`/blog/${post.slug}`}
+              class="group flex flex-col gap-3 py-8 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 transition"
+            >
+              <div class="sm:flex-1">
+                <h2 class="text-xl sm:text-2xl font-semibold text-white group-hover:text-brand-yellow transition">
+                  {post.data.title}
+                </h2>
+                <p class="mt-2 text-fog-2 leading-relaxed">{post.data.description}</p>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <ul class="mt-4 flex flex-wrap gap-2">
+                    {post.data.tags.map((tag) => (
+                      <li class="font-mono text-[10px] uppercase tracking-widest text-fog-2 border hairline rounded-full px-2.5 py-1">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <time
+                datetime={post.data.pubDate.toISOString()}
+                class="font-mono text-xs uppercase tracking-widest text-fog-2 sm:flex-shrink-0"
+              >
+                {dateFmt.format(post.data.pubDate)}
+              </time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>

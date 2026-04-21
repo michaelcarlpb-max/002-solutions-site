@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const posts = await getCollection('blog', ({ data }) => !isProd || !data.draft);
+  const sorted = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return sorted.map((post, index) => ({
+    params: { slug: post.slug },
+    props: {
+      post,
+      prev: index < sorted.length - 1 ? sorted[index + 1] : null,
+      next: index > 0 ? sorted[index - 1] : null,
+    },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  prev: CollectionEntry<'blog'> | null;
+  next: CollectionEntry<'blog'> | null;
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await post.render();
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Rough reading time: 220 wpm on prose.
+const wordCount = post.body.trim().split(/\s+/).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 220));
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="container-site pt-20 sm:pt-28 pb-16">
+    <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
+      <a href="/blog" class="hover:text-brand-yellow transition">Writing</a>
+      <span class="mx-2" aria-hidden="true">/</span>
+      <span class="text-fog">{post.data.title}</span>
+    </nav>
+
+    <header class="max-w-3xl">
+      <p class="eyebrow mb-5">// POST</p>
+      <h1 class="text-4xl sm:text-5xl font-bold leading-tight">{post.data.title}</h1>
+      <p class="mt-5 text-lg text-fog-2 leading-relaxed">{post.data.description}</p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-widest text-fog-2">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {dateFmt.format(post.data.pubDate)}
+        </time>
+        <span aria-hidden="true">·</span>
+        <span>{readingMinutes} min read</span>
+        {post.data.updatedDate && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Updated {dateFmt.format(post.data.updatedDate)}</span>
+          </>
+        )}
+      </div>
+
+      {post.data.tags && post.data.tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => (
+            <li class="font-mono text-[10px] uppercase tracking-widest text-fog-2 border hairline rounded-full px-2.5 py-1">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <div class="mt-12 prose prose-invert prose-lg max-w-3xl">
+      <Content />
+    </div>
+  </article>
+
+  <section class="container-site pb-16 border-t hairline pt-10">
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl" aria-label="Post navigation">
+      {prev ? (
+        <a
+          href={`/blog/${prev.slug}`}
+          class="group rounded-lg border hairline bg-ink-2/40 p-6 transition hover:border-white/25 hover:bg-ink-2/70"
+        >
+          <p class="font-mono text-xs uppercase tracking-widest text-fog-2">← Older post</p>
+          <p class="mt-2 text-white font-semibold group-hover:text-brand-yellow transition">{prev.data.title}</p>
+        </a>
+      ) : (
+        <div aria-hidden="true"></div>
+      )}
+      {next ? (
+        <a
+          href={`/blog/${next.slug}`}
+          class="group rounded-lg border hairline bg-ink-2/40 p-6 transition hover:border-white/25 hover:bg-ink-2/70 sm:text-right"
+        >
+          <p class="font-mono text-xs uppercase tracking-widest text-fog-2">Newer post →</p>
+          <p class="mt-2 text-white font-semibold group-hover:text-brand-yellow transition">{next.data.title}</p>
+        </a>
+      ) : (
+        <div aria-hidden="true"></div>
+      )}
+    </nav>
+  </section>
+
+  <section class="container-site pb-24">
+    <div class="relative overflow-hidden rounded-xl border hairline bg-ink-2/40 p-10 sm:p-14">
+      <div class="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full blur-3xl opacity-20 bg-brand-gradient pointer-events-none" aria-hidden="true"></div>
+      <p class="eyebrow mb-4">// GET IN TOUCH</p>
+      <h2 class="text-3xl sm:text-4xl font-bold max-w-2xl">
+        Have a project in mind?
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg text-fog-2 leading-relaxed">
+        I help small businesses and founders ship iOS apps, AI tools, and infrastructure. Scoped engagements, fixed prices, senior-level work.
+      </p>
+      <div class="mt-8">
+        <a href="/contact" class="btn-primary">
+          Start a conversation
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
