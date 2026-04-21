@@ -3,7 +3,7 @@ title: "The three questions that predict whether your AI project will ship"
 description: "Most AI projects stall because they skip the unsexy decisions. Here's how to tell if yours will actually make it to production."
 pubDate: 2026-04-21
 tags: ["ai", "consulting", "process"]
-draft: true
+draft: false
 ---
 
 I've looked at maybe two dozen AI project plans in the last year. About half were going to fail before anyone wrote a line of code, and you could tell by asking three questions.
