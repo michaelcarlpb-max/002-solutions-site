@@ -61,6 +61,8 @@ Once a quarter, pick something from the list and restore it. Not the whole syste
 
 This is the step that separates real backup strategies from the theater of backup strategies. If you can't restore the file in under an hour, the backup isn't working yet.
 
+Some mid to large companies have a monthly auto generated request ticket that has the backup team perform test restores to validate restore functionality and also some companies require regular restore testing to meet compliance standards.
+
 ## What to do next
 
 If you're reading this and realizing your current setup doesn't hit 3-2-1:
