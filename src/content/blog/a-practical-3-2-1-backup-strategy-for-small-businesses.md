@@ -3,7 +3,7 @@ title: "The backup strategy no one actually follows"
 description: "3-2-1 backup is simple advice that most small businesses ignore until something breaks. Here's how to actually do it."
 pubDate: 2026-04-27
 tags: ["backup", "disaster-recovery", "small-business", "it"]
-draft: true
+draft: false
 ---
 
 Most small businesses have one backup. Maybe it's a cloud sync service. Maybe it's an external drive someone remembers to plug in weekly. Maybe it's "our email is in Google so we're fine."
