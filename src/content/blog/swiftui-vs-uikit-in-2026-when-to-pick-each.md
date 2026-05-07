@@ -3,7 +3,7 @@ title: "SwiftUI is ready. UIKit still wins sometimes."
 description: "After five years, SwiftUI handles most iOS work. But three scenarios still call for UIKit — here's when to reach for each."
 pubDate: 2026-05-04
 tags: ["ios", "swiftui", "tools"]
-draft: true
+draft: false
 ---
 
 The question isn't whether SwiftUI is production-ready anymore. It is. The question is whether *your specific project* should use it.
