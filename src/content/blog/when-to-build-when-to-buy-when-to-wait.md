@@ -3,7 +3,7 @@ title: "Build, buy, or wait: how to decide without a spreadsheet"
 description: "The real cost of building isn't engineering time. It's the decision you're not making while you build."
 pubDate: 2026-05-11
 tags: ["advisory", "consulting", "founders", "process"]
-draft: true
+draft: false
 ---
 
 Every founder I've worked with has asked some version of the same question: "Should we just build this ourselves?"
