@@ -3,7 +3,7 @@ title: "RAG vs fine-tuning: most people need the boring one"
 description: "Fine-tuning sounds sophisticated. RAG sounds like plumbing. Guess which one actually solves most problems?"
 pubDate: 2026-05-18
 tags: ["ai", "llm", "consulting", "tools"]
-draft: true
+draft: false
 ---
 
 You're looking at an AI project and someone just asked whether you should fine-tune the model or use RAG. The question sounds technical enough that it feels like it requires research. It doesn't. For most small business use cases, RAG is the answer and fine-tuning is a distraction.
