@@ -28,6 +28,13 @@
       "topicTitle": "When to build, when to buy, when to wait",
       "category": "advisory",
       "draftedAt": "2026-05-11T19:17:48.976Z"
+    },
+    {
+      "slug": "rag-vs-fine-tuning-which-do-you-actually-need",
+      "title": "RAG vs fine-tuning: most people need the boring one",
+      "topicTitle": "RAG vs fine-tuning: which do you actually need?",
+      "category": "ai",
+      "draftedAt": "2026-05-18T19:14:19.430Z"
     }
   ]
 }
