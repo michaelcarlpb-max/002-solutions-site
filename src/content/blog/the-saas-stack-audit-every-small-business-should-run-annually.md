@@ -3,7 +3,7 @@ title: "The annual SaaS audit that takes two hours and saves thousands"
 description: "Most small businesses carry 30% more subscriptions than they use. Here's how to find them without a vendor or a spreadsheet project."
 pubDate: 2026-06-08
 tags: ["it", "small-business", "process", "tools"]
-draft: true
+draft: false
 ---
 
 Your company is paying for software no one remembers signing up for. I know this because I've run this exercise for a dozen clients and it's true every single time.
