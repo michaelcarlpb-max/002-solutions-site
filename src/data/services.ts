@@ -15,6 +15,8 @@ export interface Service {
   };
   goodFit: string[];
   notAFit: string[];
+  /** Rendered as an FAQ section + FAQPage schema. Write answers in plain prose — no markdown. */
+  faqs: { question: string; answer: string }[];
   /** Used for SEO meta description. Keep under ~155 chars. */
   metaDescription: string;
 }
@@ -53,6 +55,33 @@ export const services: Service[] = [
       'Break-fix on-call coverage',
       'Compliance certifications (SOC 2, HIPAA audits, etc.)',
     ],
+    faqs: [
+      {
+        question: 'How much does IT consulting cost for a small business?',
+        answer:
+          "Every engagement is a fixed price quoted up front after a short scoping call — no hourly billing, no retainers, no surprise invoices. The price depends on scope: a focused audit costs less than a full migration. You'll know the exact number before any work starts, and it doesn't change unless the scope does.",
+      },
+      {
+        question: 'Do you work with businesses outside of Tampa?',
+        answer:
+          "Yes. I'm based in Tampa, Florida and work in Eastern Time, but nearly all of this work happens remotely, so I take on clients anywhere. For Tampa Bay area businesses I can also come on-site when the work calls for it.",
+      },
+      {
+        question: 'Do you offer ongoing IT support or managed services?',
+        answer:
+          "No — I do scoped, project-based work rather than helpdesk retainers or on-call coverage. When an engagement ends you get handoff documentation so your team (or your next provider) can run what I built. If you need ongoing managed services, I'll tell you that honestly and point you toward the right kind of provider.",
+      },
+      {
+        question: 'What size of business is this a good fit for?',
+        answer:
+          "Typically small businesses and founder-led teams without a dedicated IT person — roughly one to fifty people. If you're big enough to have your own IT department, you probably need staff, not a consultant. If you're paying enterprise prices for small-business problems, that's exactly the situation I help fix.",
+      },
+      {
+        question: 'What does a typical engagement look like?',
+        answer:
+          'We start with a scoping call where you describe the problem in plain English. I send a written proposal with a fixed price and a clear deliverable. Then I do the work — most scoped audits take two to four weeks — and finish with handoff documentation and a walkthrough so you actually understand what changed and why.',
+      },
+    ],
     metaDescription:
       'Freelance IT consulting for small businesses — infrastructure reviews, backup planning, stack rationalization, and senior-level technical decisions without the enterprise markup.',
   },
@@ -88,6 +117,33 @@ export const services: Service[] = [
       'Android-first or Android-only projects',
       'Cross-platform stacks (React Native, Flutter, Ionic)',
       'Staff augmentation inside an existing iOS team',
+    ],
+    faqs: [
+      {
+        question: 'How much does it cost to build an iOS app?',
+        answer:
+          "It depends entirely on scope — a focused single-purpose app costs far less than one with accounts, payments, and a backend. I price per milestone, fixed, so you know the cost of each phase before it starts. After a scoping call I'll give you a realistic number and, just as importantly, tell you which features to cut from v1 to get to market faster.",
+      },
+      {
+        question: 'How long does it take to build an app?',
+        answer:
+          'Most v1 apps take four to twelve weeks depending on scope. Simple, focused apps land on the shorter end; apps with backends, in-app purchases, or heavy system integrations take longer. You see progress throughout via TestFlight builds, not a big reveal at the end.',
+      },
+      {
+        question: 'Do you build Android or cross-platform apps?',
+        answer:
+          "No — I build native iOS apps in SwiftUI, and I'd rather be excellent at one platform than mediocre at two. If you genuinely need Android on day one, a cross-platform shop is a better fit, and I'll tell you that in the first call. Many small businesses find iOS-first is the right way to validate before paying for both platforms.",
+      },
+      {
+        question: 'Who owns the code when the project is done?',
+        answer:
+          'You do. You get the complete source code, the App Store account is yours, and the handoff includes documentation so another developer could pick it up tomorrow. No lock-in, no licensing terms, no rented codebase.',
+      },
+      {
+        question: 'Do you handle the App Store submission process?',
+        answer:
+          "Yes — end to end. That includes the App Store listing, screenshots, privacy declarations, review submission, and dealing with Apple's rejection notices when they happen (they happen to everyone). The engagement isn't done until the app is live.",
+      },
     ],
     metaDescription:
       'Native SwiftUI iOS app development, end-to-end. From concept through App Store submission — one senior developer handling design, code, and release.',
@@ -125,6 +181,33 @@ export const services: Service[] = [
       'ML research projects without a clear production target',
       'Speculative "AI strategy" engagements without a workflow to improve',
     ],
+    faqs: [
+      {
+        question: 'What kinds of tasks can AI actually automate for a small business?',
+        answer:
+          'The boring, repeatable ones: processing documents and invoices, extracting data from PDFs and emails, triaging inboxes, answering questions against your internal documents, drafting first-pass reports, and gluing together tools that don\'t talk to each other. If a task follows a pattern and eats hours every week, it\'s probably automatable. If it requires real judgment every time, it probably isn\'t — and I\'ll say so.',
+      },
+      {
+        question: 'Do I need a big budget or a lot of data to start with AI?',
+        answer:
+          "No. Most useful AI automation projects are one to six weeks of work built on existing models like Claude — no training, no data science team, no six-month pilot. The right first project is the smallest thing that removes a real chunk of weekly busywork, and you measure whether it worked before spending more.",
+      },
+      {
+        question: 'Is my business data safe when using AI tools?',
+        answer:
+          "It can be, if it's set up properly. I build on commercial APIs (like Anthropic and OpenAI) under terms where your data isn't used to train models, keep your data inside accounts you own, and avoid sending anything sensitive that doesn't need to leave your systems. Part of every engagement is walking you through exactly where your data goes.",
+      },
+      {
+        question: 'Which AI tools and models do you work with?',
+        answer:
+          "Mostly the Claude and OpenAI APIs for the model layer, with n8n, Zapier, or custom scripts for the workflow plumbing — chosen per problem, not by loyalty. I'm deliberately vendor-neutral: you get whatever combination solves your workflow cheapest and most reliably.",
+      },
+      {
+        question: 'How do I know if my AI project will actually work before paying for it?',
+        answer:
+          "We start with the workflow, not the technology: identify the repeatable task, prototype the smallest version, and measure it against the manual process. If the prototype doesn't clearly win, you stop early and cheap. I turn down projects where I don't think AI is the right answer — a strategy deck with no working software helps nobody.",
+      },
+    ],
     metaDescription:
       'AI and automation consulting — Claude and OpenAI integrations, RAG pipelines, and workflow automation for small businesses. Skeptical of hype, focused on what ships.',
   },
@@ -160,6 +243,33 @@ export const services: Service[] = [
       'Ongoing fractional CTO retainers',
       'Team management or hiring decisions',
       'Long-term architecture ownership',
+    ],
+    faqs: [
+      {
+        question: 'What is a technology advisory session?',
+        answer:
+          "A short, focused engagement — anywhere from a half-day session to two weeks — where an experienced outside technologist reviews your architecture, stack, or roadmap and gives you a straight written answer. You brief me, I dig in, and you get recommendations with the tradeoffs spelled out, plus a follow-up call to work through questions.",
+      },
+      {
+        question: 'When does it make sense to get a second opinion on a technical decision?',
+        answer:
+          "Before the expensive commitment, not after. The classic moments: you're about to sign off on a big build, your team is split on technical direction, you're choosing a stack you'll live with for years, or you're acquiring or investing in a company whose technology you can't evaluate yourself. A short review now is much cheaper than unwinding the wrong decision later.",
+      },
+      {
+        question: 'Are you available as a fractional CTO?',
+        answer:
+          "Not on an ongoing retainer — I keep advisory work short and scoped so the advice stays independent. If you need someone to own architecture or manage a team long-term, that's a hire. What I can do is help you make the big decisions well, including helping you figure out what that hire should look like.",
+      },
+      {
+        question: 'What do I actually get at the end of an advisory engagement?',
+        answer:
+          'A written recommendation in plain English: what I reviewed, what I found, what I\'d do in your position, and the tradeoffs of each option. It\'s a document you can share with your team, your board, or your investors — not a slide deck of generalities. Plus a follow-up call to pressure-test it.',
+      },
+      {
+        question: 'Can you review code or architecture under NDA?',
+        answer:
+          "Yes — NDAs are routine for this work, especially for technical due diligence on acquisitions or investments. Your code and findings stay confidential, and the written deliverable goes only to you.",
+      },
     ],
     metaDescription:
       'Independent technology advisory — architecture reviews, stack selection, technical due diligence, and roadmap sessions. Short engagements, direct answers.',

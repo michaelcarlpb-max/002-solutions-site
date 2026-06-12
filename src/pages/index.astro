@@ -6,6 +6,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import { services } from '../data/services';
+import { getCollection } from 'astro:content';
 
 const homeServices = services.map((s) => ({
   title: s.title,
@@ -13,6 +14,17 @@ const homeServices = services.map((s) => ({
   icon: s.icon,
   href: `/services/${s.slug}/`,
 }));
+
+const isProd = import.meta.env.PROD;
+const latestPosts = (await getCollection('blog', ({ data }) => !isProd || !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <BaseLayout title="002 Solutions">
@@ -44,6 +56,40 @@ const homeServices = services.map((s) => ({
         <a href="/about/" class="text-brand-yellow hover:underline">Read more about how I work →</a>
       </p>
     </div>
+  </section>
+
+  <section class="reveal container-site py-20 sm:py-28 border-t hairline">
+    <div class="flex items-baseline justify-between">
+      <SectionHeading eyebrow="// 04 — WRITING" title="Latest writing." />
+      <a href="/blog/" class="hidden sm:inline font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline flex-shrink-0">
+        View all →
+      </a>
+    </div>
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+      {latestPosts.map((post) => (
+        <a
+          href={`/blog/${post.slug}/`}
+          class="group flex flex-col rounded-lg border hairline bg-ink-2/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-ink-2/70"
+        >
+          <time
+            datetime={post.data.pubDate.toISOString()}
+            class="font-mono text-xs uppercase tracking-widest text-fog-2"
+          >
+            {dateFmt.format(post.data.pubDate)}
+          </time>
+          <h3 class="mt-3 text-lg font-semibold group-hover:text-brand-yellow transition">
+            {post.data.title}
+          </h3>
+          <p class="mt-2 text-sm text-fog-2 leading-relaxed line-clamp-3">{post.data.description}</p>
+          <span class="mt-auto pt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-brand-yellow group-hover:gap-2 transition-all">
+            Read post <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+    <a href="/blog/" class="sm:hidden mt-8 inline-block font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline">
+      View all writing →
+    </a>
   </section>
 
   <section class="reveal container-site py-20 sm:py-28 border-t hairline">
