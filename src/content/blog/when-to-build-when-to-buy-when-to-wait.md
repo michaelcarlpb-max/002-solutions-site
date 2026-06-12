@@ -64,7 +64,7 @@ Waiting is a decision. It should be on the list of options next to build and buy
 
 ## How I actually decide
 
-Here's the framework I use when a client asks me build-or-buy:
+Here's the framework I use when [a client asks me build-or-buy](/services/advisory/):
 
 1. Is this your core product? If yes, build. If no, keep going.
 2. Does a credible solution exist? If no, build. If yes, keep going.

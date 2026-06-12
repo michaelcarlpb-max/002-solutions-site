@@ -6,7 +6,7 @@ tags: ["it", "small-business", "process", "tools"]
 draft: false
 ---
 
-Your company is paying for software no one remembers signing up for. I know this because I've run this exercise for a dozen clients and it's true every single time.
+Your company is paying for software no one remembers signing up for. I know this because I've [run this exercise for a dozen clients](/services/it-consulting/) and it's true every single time.
 
 The pattern: someone on the team needed a tool for a project two years ago, put it on the company card, the project wrapped, the person left or moved roles, the subscription kept renewing. Multiply that by every tool your team has tried since 2020 and you've got $500–2,000/month walking out the door.
 

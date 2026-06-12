@@ -24,7 +24,7 @@ const next = currentIndex < services.length - 1 ? services[currentIndex + 1] : s
 // Sibling services for "other services" strip
 const otherServices = services.filter((s) => s.slug !== service.slug);
 
-const serviceUrl = `${SITE_URL}/services/${service.slug}`;
+const serviceUrl = `${SITE_URL}/services/${service.slug}/`;
 
 const pageSchema = [
   {
@@ -55,7 +55,7 @@ const pageSchema = [
   },
   breadcrumb([
     { name: 'Home', url: `${SITE_URL}/` },
-    { name: 'Services', url: `${SITE_URL}/services` },
+    { name: 'Services', url: `${SITE_URL}/services/` },
     { name: service.shortTitle, url: serviceUrl },
   ]),
 ];
@@ -64,7 +64,7 @@ const pageSchema = [
 <BaseLayout title={service.title} description={service.metaDescription} schema={pageSchema}>
   <section class="container-site pt-20 sm:pt-28 pb-10">
     <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
-      <a href="/services" class="hover:text-brand-yellow transition">Services</a>
+      <a href="/services/" class="hover:text-brand-yellow transition">Services</a>
       <span class="mx-2" aria-hidden="true">/</span>
       <span class="text-fog">{service.shortTitle}</span>
     </nav>
@@ -190,7 +190,7 @@ const pageSchema = [
         Describe your situation in a few sentences. I'll tell you whether I can help, and how I'd scope the work.
       </p>
       <div class="mt-8">
-        <a href="/contact" class="btn-primary">
+        <a href="/contact/" class="btn-primary">
           Start a conversation
           <span aria-hidden="true">→</span>
         </a>
@@ -201,14 +201,14 @@ const pageSchema = [
   <section class="reveal container-site py-16 border-t hairline">
     <div class="flex items-baseline justify-between mb-8">
       <p class="eyebrow">// OTHER SERVICES</p>
-      <a href="/services" class="font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline">
+      <a href="/services/" class="font-mono text-xs uppercase tracking-widest text-brand-yellow hover:underline">
         View all →
       </a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {otherServices.map((s) => (
         <a
-          href={`/services/${s.slug}`}
+          href={`/services/${s.slug}/`}
           class="group relative block rounded-lg border hairline bg-ink-2/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-ink-2/70"
         >
           <h3 class="text-lg font-semibold">{s.shortTitle}</h3>

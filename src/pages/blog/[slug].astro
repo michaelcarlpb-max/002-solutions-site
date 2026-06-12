@@ -39,7 +39,7 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
 const wordCount = post.body.trim().split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 220));
 
-const postUrl = `${SITE_URL}/blog/${post.slug}`;
+const postUrl = `${SITE_URL}/blog/${post.slug}/`;
 
 const pageSchema = [
   {
@@ -64,7 +64,7 @@ const pageSchema = [
   },
   breadcrumb([
     { name: 'Home', url: `${SITE_URL}/` },
-    { name: 'Writing', url: `${SITE_URL}/blog` },
+    { name: 'Writing', url: `${SITE_URL}/blog/` },
     { name: post.data.title, url: postUrl },
   ]),
 ];
@@ -73,7 +73,7 @@ const pageSchema = [
 <BaseLayout title={post.data.title} description={post.data.description} schema={pageSchema}>
   <article class="container-site pt-20 sm:pt-28 pb-16">
     <nav class="mb-8 font-mono text-xs uppercase tracking-widest text-fog-2">
-      <a href="/blog" class="hover:text-brand-yellow transition">Writing</a>
+      <a href="/blog/" class="hover:text-brand-yellow transition">Writing</a>
       <span class="mx-2" aria-hidden="true">/</span>
       <span class="text-fog">{post.data.title}</span>
     </nav>
@@ -117,7 +117,7 @@ const pageSchema = [
     <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl" aria-label="Post navigation">
       {prev ? (
         <a
-          href={`/blog/${prev.slug}`}
+          href={`/blog/${prev.slug}/`}
           class="group rounded-lg border hairline bg-ink-2/40 p-6 transition hover:border-white/25 hover:bg-ink-2/70"
         >
           <p class="font-mono text-xs uppercase tracking-widest text-fog-2">← Older post</p>
@@ -128,7 +128,7 @@ const pageSchema = [
       )}
       {next ? (
         <a
-          href={`/blog/${next.slug}`}
+          href={`/blog/${next.slug}/`}
           class="group rounded-lg border hairline bg-ink-2/40 p-6 transition hover:border-white/25 hover:bg-ink-2/70 sm:text-right"
         >
           <p class="font-mono text-xs uppercase tracking-widest text-fog-2">Newer post →</p>
@@ -151,7 +151,7 @@ const pageSchema = [
         I help small businesses and founders ship iOS apps, AI tools, and infrastructure. Scoped engagements, fixed prices, senior-level work.
       </p>
       <div class="mt-8">
-        <a href="/contact" class="btn-primary">
+        <a href="/contact/" class="btn-primary">
           Start a conversation
           <span aria-hidden="true">→</span>
         </a>

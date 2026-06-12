@@ -8,7 +8,7 @@ import { SITE_URL, ORG_ID, breadcrumb } from '../lib/schema';
 const pageSchema = [
   {
     '@type': 'CollectionPage',
-    url: `${SITE_URL}/services`,
+    url: `${SITE_URL}/services/`,
     name: 'Services — 002 Solutions',
     description:
       'Freelance IT consulting, iOS development, AI automation, and general technology advisory.',
@@ -19,14 +19,14 @@ const pageSchema = [
       itemListElement: services.map((s, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `${SITE_URL}/services/${s.slug}`,
+        url: `${SITE_URL}/services/${s.slug}/`,
         name: s.title,
       })),
     },
   },
   breadcrumb([
     { name: 'Home', url: `${SITE_URL}/` },
-    { name: 'Services', url: `${SITE_URL}/services` },
+    { name: 'Services', url: `${SITE_URL}/services/` },
   ]),
 ];
 ---
@@ -41,6 +41,7 @@ const pageSchema = [
       eyebrow="// SERVICES"
       title="Four ways I can help."
       subtitle="Scoped engagements, clear pricing, and senior-level work delivered end-to-end."
+      level="h1"
     />
   </section>
 
@@ -52,7 +53,7 @@ const pageSchema = [
           description={s.summary}
           icon={s.icon}
           bullets={s.deliverables.slice(0, 4)}
-          href={`/services/${s.slug}`}
+          href={`/services/${s.slug}/`}
         />
       ))}
     </div>
@@ -66,7 +67,7 @@ const pageSchema = [
         Describe your situation in a few sentences. I'll tell you whether I can help, and if not, who might.
       </p>
       <div class="mt-8">
-        <a href="/contact" class="btn-primary">
+        <a href="/contact/" class="btn-primary">
           Get in touch
           <span aria-hidden="true">→</span>
         </a>

@@ -70,3 +70,5 @@ If you're reading this and realizing your current setup doesn't hit 3-2-1:
 3. Write down the restore steps for one critical file type. Then test them.
 
 It's not exciting. It won't move revenue this quarter. But it's the kind of boring infrastructure work that lets you keep working when something actually breaks. That's the whole idea.
+
+And if you'd rather hand it to someone who's set this up a dozen times, [backup and disaster recovery planning](/services/it-consulting/) is a standard part of my IT consulting work.

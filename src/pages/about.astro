@@ -17,7 +17,7 @@ const currentlyBuilding = [
 const pageSchema = [
   {
     '@type': 'AboutPage',
-    url: `${SITE_URL}/about`,
+    url: `${SITE_URL}/about/`,
     name: 'About Michael Carl — 002 Solutions',
     description:
       'About Michael Carl, the independent technologist behind 002 Solutions, based in Tampa, Florida.',
@@ -26,7 +26,7 @@ const pageSchema = [
   },
   breadcrumb([
     { name: 'Home', url: `${SITE_URL}/` },
-    { name: 'About', url: `${SITE_URL}/about` },
+    { name: 'About', url: `${SITE_URL}/about/` },
   ]),
 ];
 ---
@@ -52,7 +52,7 @@ const pageSchema = [
       </p>
       <p>
         If that sounds like your situation,
-        <a href="/contact" class="text-brand-yellow hover:underline">get in touch</a>.
+        <a href="/contact/" class="text-brand-yellow hover:underline">get in touch</a>.
       </p>
     </div>
   </section>

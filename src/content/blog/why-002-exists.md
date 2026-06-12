@@ -34,10 +34,10 @@ The clearest way to describe the fit is by counter-example. 002 isn't a great ma
 It *is* a great match if you're:
 
 - A small business that needs senior help on a specific thing, not an ongoing relationship
-- A founder shipping an iOS app and wanting one person to own it end-to-end
-- A team wondering whether some AI-assisted workflow would actually save time
-- Someone about to commit to a big technical decision and wanting an independent read first
+- A founder [shipping an iOS app](/services/ios-development/) and wanting one person to own it end-to-end
+- A team wondering whether some [AI-assisted workflow](/services/ai-automation/) would actually save time
+- Someone about to commit to a big technical decision and wanting [an independent read](/services/advisory/) first
 
 ## What's next
 
-This blog is going to be a place for short, practical notes on the work — patterns I see repeatedly, decisions worth thinking about out loud, and the occasional opinion about tools. If any of that sounds useful, [subscribe to the RSS feed](/rss.xml) or [get in touch](/contact).
+This blog is going to be a place for short, practical notes on the work — patterns I see repeatedly, decisions worth thinking about out loud, and the occasional opinion about tools. If any of that sounds useful, [subscribe to the RSS feed](/rss.xml) or [get in touch](/contact/).

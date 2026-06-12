@@ -11,7 +11,7 @@ const homeServices = services.map((s) => ({
   title: s.title,
   description: s.summary.split('.')[0] + '.',
   icon: s.icon,
-  href: `/services/${s.slug}`,
+  href: `/services/${s.slug}/`,
 }));
 ---
 
@@ -41,7 +41,7 @@ const homeServices = services.map((s) => ({
         I'm Michael Carl — an independent technologist in Tampa, Florida, shipping iOS apps, AI tools, and backup infrastructure for small businesses and founders.
       </p>
       <p>
-        <a href="/about" class="text-brand-yellow hover:underline">Read more about how I work →</a>
+        <a href="/about/" class="text-brand-yellow hover:underline">Read more about how I work →</a>
       </p>
     </div>
   </section>
@@ -54,7 +54,7 @@ const homeServices = services.map((s) => ({
         Have something in mind? Let's talk.
       </h2>
       <div class="mt-8">
-        <a href="/contact" class="btn-primary">
+        <a href="/contact/" class="btn-primary">
           Start a conversation
           <span aria-hidden="true">→</span>
         </a>

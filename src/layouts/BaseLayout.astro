@@ -15,6 +15,8 @@ interface Props {
   ogImage?: string;
   /** Additional schema.org entities to merge into the page's @graph. Single object or array. */
   schema?: unknown | unknown[];
+  /** Set true on utility pages (form confirmations, etc.) to keep them out of search indexes. */
+  noindex?: boolean;
 }
 
 const {
@@ -22,6 +24,7 @@ const {
   description = 'Freelance IT consulting, iOS development, and AI automation — based in Tampa, Florida. Remote-friendly.',
   ogImage = '/og.png',
   schema,
+  noindex = false,
 } = Astro.props;
 
 const pageSchemas = schema === undefined ? [] : Array.isArray(schema) ? schema : [schema];
@@ -29,7 +32,10 @@ const jsonLd = renderJsonLd(pageSchemas);
 
 const siteName = '002 Solutions';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://002solutions.com').toString();
-const fullTitle = title === siteName ? `${siteName} — Practical technology consulting` : `${title} — ${siteName}`;
+const fullTitle =
+  title === siteName
+    ? 'IT Consulting, iOS & AI Automation for Small Business | 002 Solutions'
+    : `${title} — ${siteName}`;
 ---
 
 <!doctype html>
@@ -40,6 +46,7 @@ const fullTitle = title === siteName ? `${siteName} — Practical technology con
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

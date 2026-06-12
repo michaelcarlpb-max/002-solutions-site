@@ -42,7 +42,7 @@ The one exception: wrapping a single isolated UIKit component inside a mostly-Sw
 
 ## What I'm actually doing
 
-For new client work targeting iOS 17+, I ship SwiftUI unless the app's core feature is one of the three scenarios above. That covers maybe 80% of projects. For the other 20%, I use UIKit and accept that the code will be longer and more tedious to maintain.
+For [new client work](/services/ios-development/) targeting iOS 17+, I ship SwiftUI unless the app's core feature is one of the three scenarios above. That covers maybe 80% of projects. For the other 20%, I use UIKit and accept that the code will be longer and more tedious to maintain.
 
 For existing UIKit apps, I don't rewrite them. Rewrites are expensive and rarely worth it unless you're already doing a major feature overhaul. But new screens go in SwiftUI where possible, wrapped carefully to avoid the hybrid tax.
 

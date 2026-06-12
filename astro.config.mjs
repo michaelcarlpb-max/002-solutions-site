@@ -7,6 +7,11 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: 'https://002solutions.com',
   output: "hybrid",
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      filter: (page) => !page.includes('/thanks'),
+    }),
+  ],
   adapter: cloudflare()
 });

@@ -77,7 +77,7 @@ export function baseGraph() {
       givenName: 'Michael',
       familyName: 'Carl',
       jobTitle: 'Independent Technologist',
-      url: `${SITE_URL}/about`,
+      url: `${SITE_URL}/about/`,
       worksFor: { '@id': ORG_ID },
       description:
         'Independent technologist based in Tampa, Florida. Ships iOS apps, AI tooling, and IT infrastructure for small businesses and founders.',

@@ -99,6 +99,14 @@ STRUCTURE:
 - Use H2 subheads (##) to break the post into 2–4 sections. No H1 (frontmatter title handles that).
 - 600–1100 words. Longer is fine if the idea earns it. Don't pad.
 
+INTERNAL LINKS (required):
+Work 1–2 contextual links to Michael's service pages into the body, woven into existing sentences — never as a bolted-on "call to action" paragraph and never more than 2. Anchor text should read naturally in the sentence (e.g. "this is most of what [AI consulting work](/services/ai-automation/) looks like"), not "click here" or the bare service name. Always use the trailing-slash form. Pick from:
+- /services/it-consulting/   (IT, infrastructure, backup, SaaS audits, vendor rationalization)
+- /services/ios-development/ (iOS, SwiftUI, App Store)
+- /services/ai-automation/   (AI, LLMs, RAG, automation, Claude/OpenAI)
+- /services/advisory/        (architecture reviews, build-vs-buy, due diligence, roadmaps)
+Link only services genuinely relevant to the topic. One excellent link beats two forced ones.
+
 FORBIDDEN — these are AI tells that will out the post:
 - Words: "delve," "leverage," "utilize" (use "use"), "robust," "seamless," "cutting-edge," "game-changer," "revolutionary," "ever-evolving," "landscape," "journey," "paradigm," "synergy," "holistic"
 - Phrases: "in today's fast-paced world," "it's important to note," "as we move forward," "that being said," "in conclusion," "to sum up," "in the ever-evolving," "navigate the"

@@ -4,14 +4,18 @@ interface Props {
   title: string;
   subtitle?: string;
   align?: 'left' | 'center';
+  /** Heading element to render. Use "h1" for the page's primary heading. */
+  level?: 'h1' | 'h2';
 }
 
-const { eyebrow, title, subtitle, align = 'left' } = Astro.props;
+const { eyebrow, title, subtitle, align = 'left', level = 'h2' } = Astro.props;
 const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
+const Heading = level;
+const sizeClass = level === 'h1' ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl';
 ---
 
 <div class:list={['max-w-3xl', alignClass]}>
   {eyebrow && <p class="eyebrow mb-4">{eyebrow}</p>}
-  <h2 class="text-3xl sm:text-4xl font-bold leading-tight">{title}</h2>
+  <Heading class:list={[sizeClass, 'font-bold leading-tight']}>{title}</Heading>
   {subtitle && <p class="mt-4 text-lg text-fog-2 leading-relaxed">{subtitle}</p>}
 </div>

@@ -44,7 +44,7 @@ The test: can one person build the first version in a month, including the conne
 
 ## What this means in practice
 
-Most AI projects fail for non-AI reasons. The model works fine. The integration is impossible. Or the integration works fine but nobody wants to change their workflow. Or the workflow is fine but the data pipeline breaks every other Tuesday.
+Most AI projects fail for non-AI reasons. The model works fine. The integration is impossible. Or the integration works fine but nobody wants to change their workflow. Or the workflow is fine but the data pipeline breaks every other Tuesday. This is most of what [AI and automation consulting](/services/ai-automation/) actually is — less model selection, more figuring out whether the workflow survives contact with reality.
 
 If you're planning an AI project and you haven't answered these three questions with boring specifics, you're not ready to start. Take a week. Write down what "wrong" looks like, draw the data flow, and cut the scope until one person could build it.
 

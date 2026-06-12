@@ -51,3 +51,5 @@ If it retrieves the right information but answers poorly, that's a prompt proble
 If it retrieves correctly, answers correctly, but you need it to do that 10x faster or handle 100x more queries, *then* you have an engineering problem worth spending real money on.
 
 Fine-tuning is the thing you consider after RAG works but doesn't scale. It's not the starting point. Anyone telling you otherwise is either selling fine-tuning services or hasn't shipped enough AI projects to know the difference.
+
+If you want a second opinion on which one your project actually needs, [that's literally a thing I do](/services/ai-automation/).
