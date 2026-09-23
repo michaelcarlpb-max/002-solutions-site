@@ -1,18 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import { SITE_URL, PERSON_ID, breadcrumb } from '../lib/schema';
-
-const currentlyBuilding = [
-  {
-    name: 'ShutterUp',
-    description: 'a hurricane preparedness iOS app',
-  },
-  {
-    name: 'VaultOS',
-    description: 'an AI-native enterprise backup platform',
-  },
-];
 
 const pageSchema = [
   {
@@ -55,17 +43,5 @@ const pageSchema = [
         <a href="/contact/" class="text-brand-yellow hover:underline">get in touch</a>.
       </p>
     </div>
-  </section>
-
-  <section class="reveal container-site py-16 border-t hairline">
-    <SectionHeading eyebrow="// CURRENTLY BUILDING" title="In-flight projects." />
-    <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl">
-      {currentlyBuilding.map((p) => (
-        <li class="rounded-lg border hairline bg-ink-2/40 p-6">
-          <h3 class="text-xl font-semibold">{p.name}</h3>
-          <p class="mt-2 text-fog-2">{p.description}</p>
-        </li>
-      ))}
-    </ul>
   </section>
 </BaseLayout>
