@@ -21,7 +21,7 @@ interface Props {
 
 const {
   title,
-  description = 'Freelance IT consulting, iOS development, and AI automation — based in Tampa, Florida. Remote-friendly.',
+  description = 'IT consulting, AI automation, and technology advisory for small businesses — based in Tampa, Florida. Remote-friendly.',
   ogImage = '/og.png',
   schema,
   noindex = false,
@@ -34,7 +34,7 @@ const siteName = '002 Solutions';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://002solutions.com').toString();
 const fullTitle =
   title === siteName
-    ? 'IT Consulting, iOS & AI Automation for Small Business | 002 Solutions'
+    ? 'IT Consulting & AI Automation for Small Business | 002 Solutions'
     : `${title} — ${siteName}`;
 ---
 

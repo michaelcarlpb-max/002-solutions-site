@@ -11,7 +11,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: '002 Solutions — Writing',
     description:
-      'Notes on practical technology consulting — iOS, AI, infrastructure, and the decisions behind them.',
+      'Notes on practical technology consulting — IT, security, AI, and the decisions behind them.',
     site: context.site ?? 'https://002solutions.com',
     items: sorted.map((post) => ({
       title: post.data.title,

@@ -86,69 +86,6 @@ export const services: Service[] = [
       'Freelance IT consulting for small businesses — infrastructure reviews, backup planning, stack rationalization, and senior-level technical decisions without the enterprise markup.',
   },
   {
-    slug: 'ios-development',
-    title: 'iOS & App Development',
-    shortTitle: 'iOS Development',
-    icon: 'ios',
-    summary:
-      'Native SwiftUI apps from concept through App Store submission. Full lifecycle, not just code.',
-    intro:
-      "I build native iOS apps in SwiftUI — end-to-end, from first sketch to App Store release. You get one person who handles the design sense, the Swift, the App Store paperwork, and the inevitable rejection notices. No handoffs, no hiring six people.",
-    deliverables: [
-      'SwiftUI app design and development',
-      'App Store submission and review navigation',
-      'StoreKit 2 and in-app purchase integration',
-      'Push notifications, widgets, and Live Activities',
-      'HealthKit, WeatherKit, and system framework integrations',
-      'TestFlight builds and beta program setup',
-    ],
-    engagement: {
-      typicalLength: '4–12 weeks for a v1, depending on scope.',
-      pricing: 'Fixed price per milestone. No hourly billing.',
-      process: 'Scope → prototype → build in public → TestFlight → ship.',
-    },
-    goodFit: [
-      'Founders with a product idea and no iOS expertise in-house',
-      'Small businesses wanting a branded, owned-not-rented app experience',
-      'Teams that need a senior iOS lead for a single project',
-      'Existing apps that need a v2 rebuild in SwiftUI',
-    ],
-    notAFit: [
-      'Android-first or Android-only projects',
-      'Cross-platform stacks (React Native, Flutter, Ionic)',
-      'Staff augmentation inside an existing iOS team',
-    ],
-    faqs: [
-      {
-        question: 'How much does it cost to build an iOS app?',
-        answer:
-          "It depends entirely on scope — a focused single-purpose app costs far less than one with accounts, payments, and a backend. I price per milestone, fixed, so you know the cost of each phase before it starts. After a scoping call I'll give you a realistic number and, just as importantly, tell you which features to cut from v1 to get to market faster.",
-      },
-      {
-        question: 'How long does it take to build an app?',
-        answer:
-          'Most v1 apps take four to twelve weeks depending on scope. Simple, focused apps land on the shorter end; apps with backends, in-app purchases, or heavy system integrations take longer. You see progress throughout via TestFlight builds, not a big reveal at the end.',
-      },
-      {
-        question: 'Do you build Android or cross-platform apps?',
-        answer:
-          "No — I build native iOS apps in SwiftUI, and I'd rather be excellent at one platform than mediocre at two. If you genuinely need Android on day one, a cross-platform shop is a better fit, and I'll tell you that in the first call. Many small businesses find iOS-first is the right way to validate before paying for both platforms.",
-      },
-      {
-        question: 'Who owns the code when the project is done?',
-        answer:
-          'You do. You get the complete source code, the App Store account is yours, and the handoff includes documentation so another developer could pick it up tomorrow. No lock-in, no licensing terms, no rented codebase.',
-      },
-      {
-        question: 'Do you handle the App Store submission process?',
-        answer:
-          "Yes — end to end. That includes the App Store listing, screenshots, privacy declarations, review submission, and dealing with Apple's rejection notices when they happen (they happen to everyone). The engagement isn't done until the app is live.",
-      },
-    ],
-    metaDescription:
-      'Native SwiftUI iOS app development, end-to-end. From concept through App Store submission — one senior developer handling design, code, and release.',
-  },
-  {
     slug: 'ai-automation',
     title: 'AI & Automation Consulting',
     shortTitle: 'AI & Automation',
@@ -273,6 +210,69 @@ export const services: Service[] = [
     ],
     metaDescription:
       'Independent technology advisory — architecture reviews, stack selection, technical due diligence, and roadmap sessions. Short engagements, direct answers.',
+  },
+  {
+    slug: 'ios-development',
+    title: 'iOS & App Development',
+    shortTitle: 'iOS Development',
+    icon: 'ios',
+    summary:
+      'Native SwiftUI apps from concept through App Store submission. Full lifecycle, not just code.',
+    intro:
+      "I build native iOS apps in SwiftUI — end-to-end, from first sketch to App Store release. You get one person who handles the design sense, the Swift, the App Store paperwork, and the inevitable rejection notices. No handoffs, no hiring six people.",
+    deliverables: [
+      'SwiftUI app design and development',
+      'App Store submission and review navigation',
+      'StoreKit 2 and in-app purchase integration',
+      'Push notifications, widgets, and Live Activities',
+      'HealthKit, WeatherKit, and system framework integrations',
+      'TestFlight builds and beta program setup',
+    ],
+    engagement: {
+      typicalLength: '4–12 weeks for a v1, depending on scope.',
+      pricing: 'Fixed price per milestone. No hourly billing.',
+      process: 'Scope → prototype → build in public → TestFlight → ship.',
+    },
+    goodFit: [
+      'Founders with a product idea and no iOS expertise in-house',
+      'Small businesses wanting a branded, owned-not-rented app experience',
+      'Teams that need a senior iOS lead for a single project',
+      'Existing apps that need a v2 rebuild in SwiftUI',
+    ],
+    notAFit: [
+      'Android-first or Android-only projects',
+      'Cross-platform stacks (React Native, Flutter, Ionic)',
+      'Staff augmentation inside an existing iOS team',
+    ],
+    faqs: [
+      {
+        question: 'How much does it cost to build an iOS app?',
+        answer:
+          "It depends entirely on scope — a focused single-purpose app costs far less than one with accounts, payments, and a backend. I price per milestone, fixed, so you know the cost of each phase before it starts. After a scoping call I'll give you a realistic number and, just as importantly, tell you which features to cut from v1 to get to market faster.",
+      },
+      {
+        question: 'How long does it take to build an app?',
+        answer:
+          'Most v1 apps take four to twelve weeks depending on scope. Simple, focused apps land on the shorter end; apps with backends, in-app purchases, or heavy system integrations take longer. You see progress throughout via TestFlight builds, not a big reveal at the end.',
+      },
+      {
+        question: 'Do you build Android or cross-platform apps?',
+        answer:
+          "No — I build native iOS apps in SwiftUI, and I'd rather be excellent at one platform than mediocre at two. If you genuinely need Android on day one, a cross-platform shop is a better fit, and I'll tell you that in the first call. Many small businesses find iOS-first is the right way to validate before paying for both platforms.",
+      },
+      {
+        question: 'Who owns the code when the project is done?',
+        answer:
+          'You do. You get the complete source code, the App Store account is yours, and the handoff includes documentation so another developer could pick it up tomorrow. No lock-in, no licensing terms, no rented codebase.',
+      },
+      {
+        question: 'Do you handle the App Store submission process?',
+        answer:
+          "Yes — end to end. That includes the App Store listing, screenshots, privacy declarations, review submission, and dealing with Apple's rejection notices when they happen (they happen to everyone). The engagement isn't done until the app is live.",
+      },
+    ],
+    metaDescription:
+      'Native SwiftUI iOS app development, end-to-end. From concept through App Store submission — one senior developer handling design, code, and release.',
   },
 ];
 

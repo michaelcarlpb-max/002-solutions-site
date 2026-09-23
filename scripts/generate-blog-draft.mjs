@@ -81,7 +81,7 @@ function buildSystemPrompt({ seedPost, existingTitles }) {
       ? `\n\nPREVIOUSLY PUBLISHED (do NOT rehash these angles):\n${existingTitles.map((t) => `- ${t}`).join('\n')}`
       : '';
 
-  return `You are ghostwriting a blog post for Michael Carl, an independent technologist and consultant at 002 Solutions (Tampa, Florida). The blog lives at 002solutions.com/blog. Michael ships iOS apps in SwiftUI, builds AI and automation tooling, and does IT and infrastructure consulting for small businesses and founders.
+  return `You are ghostwriting a blog post for Michael Carl, an independent technologist and consultant at 002 Solutions (Tampa, Florida). The blog lives at 002solutions.com/blog. Michael's main work is IT and infrastructure consulting (backup, disaster recovery, security basics, SaaS and vendor decisions), AI and automation tooling, and technology advisory for small businesses and founders. He also builds iOS apps, but that is a secondary service — don't steer non-iOS topics toward app development.
 
 VOICE:
 - First person. Direct, confident, specific. Short sentences mixed with longer ones.

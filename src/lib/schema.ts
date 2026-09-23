@@ -38,7 +38,7 @@ export function baseGraph() {
       },
       image: `${SITE_URL}/og.png`,
       description:
-        'Freelance IT consulting, iOS development, AI automation, and general technology advisory for small businesses and founders.',
+        'IT consulting, AI automation, technology advisory, and iOS development for small businesses and founders.',
       founder: { '@id': PERSON_ID },
       employee: { '@id': PERSON_ID },
       address: {
@@ -53,14 +53,14 @@ export function baseGraph() {
         { '@type': 'Country', name: 'United States' },
       ],
       knowsAbout: [
-        'iOS app development',
-        'SwiftUI',
+        'IT consulting',
+        'Small business technology',
+        'Backup and disaster recovery',
+        'Cybersecurity for small businesses',
         'AI automation',
         'Claude API integration',
-        'IT consulting',
-        'Backup and disaster recovery',
         'Technical advisory',
-        'Small business technology',
+        'iOS app development',
       ],
       priceRange: '$$',
       contactPoint: {
@@ -80,7 +80,7 @@ export function baseGraph() {
       url: `${SITE_URL}/about/`,
       worksFor: { '@id': ORG_ID },
       description:
-        'Independent technologist based in Tampa, Florida. Ships iOS apps, AI tooling, and IT infrastructure for small businesses and founders.',
+        'Independent technologist based in Tampa, Florida. Helps small businesses and founders with IT infrastructure, AI automation, and technology decisions.',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Tampa',
@@ -88,12 +88,12 @@ export function baseGraph() {
         addressCountry: 'US',
       },
       knowsAbout: [
-        'Swift',
-        'SwiftUI',
-        'iOS development',
+        'IT consulting',
+        'IT infrastructure',
+        'Backup and disaster recovery',
         'AI integration',
         'LLM applications',
-        'IT consulting',
+        'iOS development',
       ],
     },
     {
@@ -102,7 +102,7 @@ export function baseGraph() {
       url: SITE_URL,
       name: '002 Solutions',
       description:
-        'Practical technology consulting — iOS development, AI automation, and IT infrastructure for small businesses and founders.',
+        'Practical technology consulting — IT infrastructure, AI automation, and technology advisory for small businesses and founders.',
       publisher: { '@id': ORG_ID },
       inLanguage: 'en-US',
     },
