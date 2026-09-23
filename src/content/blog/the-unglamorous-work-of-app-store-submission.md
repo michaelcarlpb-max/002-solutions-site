@@ -11,7 +11,7 @@ The last 20% of shipping an iOS app takes longer than you think, and none of it 
 You have working code. The UI looks good on your test device. You've fixed the crashes. You think you're done. You're not. What's left is App Store submission, which is:
 
 - Writing marketing copy Apple will reject if it mentions competitors
-- Taking screenshots in five screen sizes even though 90% of your users have two phone models
+- Producing screenshots that look right on every device you support, even though most of your users own one or two phone models
 - Filling out a privacy manifest that asks questions you've never thought about
 - Waiting 24–48 hours to find out you misspelled something in your App Privacy section
 
@@ -33,21 +33,15 @@ App Store Connect wants you to describe your app in several formats simultaneous
 
 You can't deploy the app without completing all of these fields. You can spend two hours on them and still get it wrong because Apple's reviewer has a different interpretation of "accurate description" than you do.
 
-## Screenshot requirements that scale badly
+## Screenshots that scale badly
 
-Apple requires screenshots for every device size your app supports. If you're universal (iPhone and iPad), that's currently:
-
-- 6.7" iPhone (Pro Max)
-- 6.5" iPhone (Plus models)
-- 5.5" iPhone (old Plus models, still required)
-- 12.9" iPad Pro
-- Optionally: Apple Watch, Apple TV, Mac
+On paper, Apple has made this easier. You now only have to upload one set of iPhone screenshots at the largest size, plus one iPad set if your app runs on iPad, and App Store Connect scales them down for smaller devices. In practice, a screenshot designed for a Pro Max often looks cramped or oddly cropped on the smaller phones most people actually carry, so teams that care end up producing more than one size anyway.
 
 Most [iOS development work](/services/ios-development/) I do is for small teams shipping simple apps. They don't have a design system that gracefully handles every screen size. They have SwiftUI that adapts reasonably well and some padding that looks fine on a 6.1" screen.
 
-Creating five perfect screenshots means either:
+Creating screenshots that look right means either:
 
-1. Running the app on five different simulators, carefully staging the exact screen state you want, then taking simulator screenshots
+1. Running the app on several simulators, carefully staging the exact screen state you want, then taking simulator screenshots
 2. Using a design tool to mock up what the app *would* look like with perfect data in perfect layout
 3. Paying someone on Fiverr to do option 2 for you
 
@@ -55,7 +49,7 @@ None of these options feel good. The screenshots lie a little — they show the 
 
 ## The privacy manifest nobody warned you about
 
-As of iOS 17, apps need a privacy manifest: a machine-readable file declaring what data you collect and why. If you use certain APIs — user defaults, file timestamps, system boot time — you need to declare those too, even if you're not "tracking" anyone.
+Since 2024, Apple has required a privacy manifest: a machine-readable file declaring what data you collect and why. If you use certain APIs — user defaults, file timestamps, system boot time — you need to declare those too, even if you're not "tracking" anyone.
 
 The privacy manifest is a `.plist` file you add to your Xcode project. The App Privacy section in App Store Connect is a web form with 40 questions. They ask overlapping things but aren't connected. You fill out both.
 
@@ -69,9 +63,9 @@ The correct answer is probably "yes," but the guidelines are written like a lega
 
 You submit. Now you wait.
 
-Apple's stated review time is 24–48 hours. It's usually accurate. Sometimes you get reviewed in six hours. Sometimes it takes four days. There's no way to know.
+Apple says most submissions are reviewed within a day or two, and that's usually accurate. Sometimes you get reviewed in six hours. Sometimes it takes four days. There's no way to know.
 
-While you wait, you can't change anything. No new builds. No metadata edits. If you realize you typo'd the subtitle, you can't fix it until after the review completes.
+While you wait, your options are limited. If you spot a typo in the subtitle, you can pull the submission out of review to fix it, but that puts you at the back of the line. Most people just wait.
 
 When the review finishes, you get one of three outcomes:
 
@@ -95,7 +89,7 @@ A few things that make submission less painful:
 
 - **Start the metadata early.** You can fill out App Store Connect before your app is finished. Get the description, keywords, and screenshots drafted while you're still coding. You'll revise them, but having a draft saves time.
 
-- **Use the simulator screenshot tool.** Xcode has a built-in way to capture simulator screenshots in exact device frames. It's under `xcrun simctl io`. Faster than manually screenshotting five times.
+- **Script your screenshots.** `xcrun simctl io booted screenshot` grabs a clean, full-resolution capture of whatever the running simulator shows, and tools like fastlane's `snapshot` can generate the whole set for you. Either beats screenshotting by hand every release.
 
 - **Read the rejection carefully.** When Apple rejects, they usually tell you exactly what's wrong. Don't skim it. Don't assume. Read the specific guideline they cite and fix the specific thing they flag.
 
