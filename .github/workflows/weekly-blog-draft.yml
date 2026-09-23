@@ -44,6 +44,18 @@ jobs:
           echo "No undrafted topics remain. Add more to src/data/blog-topics.json."
           exit 0
 
+      # Record the topic on main right away. If the state file only lands when the
+      # draft PR merges, an unmerged draft makes every later run pick the same topic
+      # and overwrite the same PR.
+      - name: Record drafted topic on main
+        if: steps.generate.outputs.skipped != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .blog-drafts/drafted.json
+          git commit -m "Record drafted topic: ${{ steps.generate.outputs.slug }}"
+          git push origin HEAD:main
+
       - name: Open pull request
         if: steps.generate.outputs.skipped != 'true'
         uses: peter-evans/create-pull-request@v7
@@ -65,9 +77,11 @@ jobs:
 
             1. Pull the branch locally or edit in the GitHub web UI.
             2. Edit the post to sound like you. The model gets the structure and the research, but your voice and specific examples are what readers will care about.
-            3. When you're happy, change `draft: true` to `draft: false` in the frontmatter.
+            3. When you're happy, change `draft: true` to `draft: false` in the frontmatter, and set `pubDate` to the day you're publishing (otherwise an older draft shows up below newer posts).
             4. Merge this PR. Cloudflare will build and publish automatically.
+
+            A new draft PR arrives every Monday whether or not this one is merged, so unreviewed drafts queue up rather than blocking the next one.
 
             ### To skip this one
 
-            Close the PR without merging. The topic will stay marked as "drafted" in `.blog-drafts/drafted.json`, so it won't be picked again. If you want the topic recycled back into the queue, remove its entry from that file in a separate commit before closing.
+            Close the PR without merging. The topic is already marked as "drafted" in `.blog-drafts/drafted.json` on main, so it won't be picked again. If you want the topic recycled back into the queue, remove its entry from that file on main.
