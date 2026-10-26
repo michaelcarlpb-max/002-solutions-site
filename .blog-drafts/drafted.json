@@ -70,6 +70,13 @@
       "topicTitle": "Ransomware readiness for teams under 50 people",
       "category": "backup",
       "draftedAt": "2026-10-19T18:54:35.858Z"
+    },
+    {
+      "slug": "the-hidden-costs-of-just-use-an-llm-for-this",
+      "title": "The bill arrives six months after you ship the LLM feature",
+      "topicTitle": "The hidden costs of 'just use an LLM for this'",
+      "category": "ai",
+      "draftedAt": "2026-10-26T18:56:57.457Z"
     }
   ]
 }
