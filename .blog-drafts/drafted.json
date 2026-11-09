@@ -84,6 +84,13 @@
       "topicTitle": "MFA everywhere: the cheapest security upgrade a small business can make",
       "category": "security",
       "draftedAt": "2026-11-02T22:00:51.162Z"
+    },
+    {
+      "slug": "signs-youre-over-engineering",
+      "title": "You probably don't need that",
+      "topicTitle": "Signs you're over-engineering",
+      "category": "advisory",
+      "draftedAt": "2026-11-09T22:47:51.983Z"
     }
   ]
 }
