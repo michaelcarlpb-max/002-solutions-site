@@ -91,6 +91,13 @@
       "topicTitle": "Signs you're over-engineering",
       "category": "advisory",
       "draftedAt": "2026-11-09T22:47:51.983Z"
+    },
+    {
+      "slug": "password-managers-vs-sso-vs-neither-what-small-teams-actually-need",
+      "title": "Most small teams are using SSO wrong",
+      "topicTitle": "Password managers vs SSO vs neither: what small teams actually need",
+      "category": "it",
+      "draftedAt": "2026-11-16T22:39:22.205Z"
     }
   ]
 }
